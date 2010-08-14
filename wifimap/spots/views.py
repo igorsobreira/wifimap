@@ -73,4 +73,7 @@ def list_spots(spots):
 def spot(request, id):
     access_point = get_object_or_404(AccessPoint, id=id)
     return render_to_response('spots/detail.html', {'spot':access_point})
-    
+
+def spot_json(request, id):
+    access_point = get_object_or_404(AccessPoint, id=id)
+    return HttpResponse('')    
