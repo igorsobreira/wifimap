@@ -32,8 +32,11 @@ var SpotManager = {
     },
     addSpotsToMap: function(points) {
          $.each(points, function(index, point){
-            Map.addPoint(point); 
+            Map.addAccessPoint(point); 
          });
+    },
+    getPointInformation: function(id) {
+
     },
     listSpots: function() {
         var self = this;
