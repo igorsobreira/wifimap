@@ -1,7 +1,11 @@
 {% include "messages.html" %}
 
-<form action="." method="post">
+<form action="{% url spots_add %}" method="post" id="add-spot-form">
     {{ form.as_p }}
-    <p><input type="submit" value="Save"></p>
+    <p><input type="submit" value="Save" id="submit-spot"></p>
     {% csrf_token %}
 </form>
+
+<script type="text/javascript" charset="utf-8">
+    SpotManager.init();
+</script>
