@@ -33,3 +33,7 @@ def add_spot(request):
             'success_message': success_message,
             'error_message': error_message,
         })
+
+def search_spots(request):
+    return render_to_response('spots/search.html', {})
+

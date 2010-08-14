@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+<header>
+    <form method="get" action="" id="search-form">
+        <input type="text" name="place" />
+        <input type="submit" value="search" />
+    </form>
+</header>
 <div id="map">
 </div>
 {% endblock %}

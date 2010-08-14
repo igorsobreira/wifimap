@@ -4,20 +4,21 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 
 class IndexViewTest(TestCase):
+    
+    def setUp(self):
+        self.response = self.client.get(reverse('spots_index'))
 
     def test_index(self):
-        response = self.client.get(reverse('spots_index'))
-        assert response.status_code == 200
+        assert self.response.status_code == 200
 
     def test_uses_index_template(self):
-        response = self.client.get(reverse('spots_index'))
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(self.response, 'index.html')
 
     def test_has_map_div(self):
-        response = self.client.get(reverse('spots_index'))
-        assert '<div id="map"' in response.content
+        assert '<div id="map"' in self.response.content
 
     def test_uses_maps_api(self):
-        response = self.client.get(reverse('spots_index'))
-        assert '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>' in response.content
-
+        assert '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>' in self.response.content
+    
+    def test_index_has_search_form(self):
+        '<form method="get" action="" id="search-form">' in self.response
