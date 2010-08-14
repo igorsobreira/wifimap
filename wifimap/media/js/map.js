@@ -35,6 +35,7 @@ var SpotManager = {
             method: 'GET',
             dataType: 'json',
             success: function(data){
+                this.center_point = data.center_point;
                 $('#content').html(data.template);
             }
         });   
