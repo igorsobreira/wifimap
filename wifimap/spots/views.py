@@ -5,14 +5,14 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse
 from django.utils import simplejson
+from django.conf import settings
 
 from spots.forms import AccessPointForm
 from spots.models import AccessPoint
-from spots.lib import geocode
+from spots.lib import geocode, point_by_ip
 
 def index(request):
     return direct_to_template(request, 'index.html', extra_context={})
-
 
 def add_spot(request):
     success_message = None
@@ -43,7 +43,7 @@ def search_spots(request):
         
     points = AccessPoint.objects.all()
     
-    if request.GET:
+    if request.GET.has_key('place'):
         geo_data = geocode(request.GET['place'])
         
         address = geo_data['Placemark'][0]['address']
@@ -52,8 +52,13 @@ def search_spots(request):
             address, 
             [lat, lng]
         ]
+    else:
+        if settings.DEBUG:
+            json['center_point'] = point_by_ip('200.147.67.142')
+        else:
+            json['center_point'] = point_by_ip(request.META['REMOTE_ADDR'])
         
-        json['template'] = list_spots(points)
+    json['template'] = list_spots(points)
 
     for point in points:
         json['points'].append(

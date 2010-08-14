@@ -1,5 +1,6 @@
 var SpotManager = { 
     init: function () {
+        this.listSpots();
         
         $('#add-spot').unbind('click').click(function(){
             SpotManager.showForm();
@@ -27,5 +28,17 @@ var SpotManager = {
     },
     formSubmitted: function(response) {
         $('#content').html(response);
+    },
+    listSpots: function() {
+        $.ajax({
+            url: '/spots/search/',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data){
+                this.center_point = data.center_point;
+                $('#content').html(data.template);
+            }
+        });   
     }
+    
 };
