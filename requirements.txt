@@ -1,1 +1,2 @@
 django==1.2
+-e git+http://github.com/simonw/geocoders.git#egg=geocoders
