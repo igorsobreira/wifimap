@@ -30,5 +30,9 @@ class AccessPoint(models.Model):
     
     @property
     def votes(self):
+        return self.votes_up + self.votes_down
+    
+    @property
+    def score(self):
         return self.votes_up - self.votes_down
     
