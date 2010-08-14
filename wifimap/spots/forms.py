@@ -9,3 +9,4 @@ class AccessPointForm(forms.ModelForm):
     
     class Meta:
         model = AccessPoint
+        exclude = ('votes_up', 'votes_down')
