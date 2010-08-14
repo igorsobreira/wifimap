@@ -25,10 +25,16 @@ var Map = {
     formSubmitted: function(response) {
         $('#content').html(response);
     },
-    addPoint: function(point) {
+    addAccessPoint: function(point) {
         var marker = new google.maps.Marker({
              position: new google.maps.LatLng(point[0], point[1]),
+             id: 1
          });
          marker.setMap(this.map);
+         
+         google.maps.event.addListener(marker, 'click', function() {
+            SpotManager.getPointInformation(marker.id);
+         });
+         
     }
 };
