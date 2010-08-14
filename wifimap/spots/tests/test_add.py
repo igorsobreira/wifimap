@@ -67,5 +67,16 @@ class AddViewTest(TestCase):
         
         self.ap = AccessPoint.objects.get(pk=self.ap.id)
         
-        assert 1 == self.ap.votes
+        assert 3 == self.ap.votes
+    
+    def test_score(self):
+        self.ap = AccessPoint.objects.create(name='Here', is_protected=True, address='foo', 
+            lat=12, lng=23, votes_up=0, votes_down=0)
+        AccessPoint.objects.vote_up(self.ap.id)
+        AccessPoint.objects.vote_up(self.ap.id)
+        AccessPoint.objects.vote_down(self.ap.id)
+        
+        self.ap = AccessPoint.objects.get(pk=self.ap.id)
+        
+        assert 1 == self.ap.score
     
