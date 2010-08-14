@@ -2,11 +2,6 @@
 
 {% include "messages.html" %}
 
-<div id="lat-lng">
-    <span class="lat"></span>
-    <span class="lng"></span>
-</div>
-
 <form action="{% url spots_add %}" method="post" id="add-spot-form">
     {{ form.as_p }}
     <p><input type="submit" value="Save" id="submit-spot"></p>
@@ -17,10 +12,11 @@
     SpotManager.bindFormSubmit();
     
     Map.followCenter( function(lat, lng) {
-        $('#lat-lng .lat').html(lat);
-        $('#lat-lng .lng').html(lng);
         $('#id_lat').val(lat);
         $('#id_lng').val(lng);
     });
+    
+    $('#id_lat').val( Map.map.getCenter().lat() );
+    $('#id_lng').val( Map.map.getCenter().lat() );
     
 </script>
