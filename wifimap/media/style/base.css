@@ -22,7 +22,9 @@ input[type=text] {
     outline: 0;
 }
 
-header, #content {
+header,
+#content,
+footer {
     width: 900px;
     padding: 10px;
     margin: 0 auto;
@@ -116,4 +118,11 @@ header {
     #content input[type=submit] {
         float: right;
     }
+
+footer {
+    background: #ccccfc;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccccfc), to(#eee));
+    background: -moz-linear-gradient(top, #ccccfc,  #eee);
+    color: #4f7393;
+}
 
