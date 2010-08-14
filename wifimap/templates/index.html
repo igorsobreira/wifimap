@@ -6,6 +6,12 @@
 {% endblock %}
 
 {% block content %}
+<header>
+    <form method="get" action="" id="search-form">
+        <input type="text" name="place" />
+        <input type="submit" value="search" />
+    </form>
+</header>
 <div id="map" style="width: 100%; height: 200px;"></div>
 {% endblock %}
 
