@@ -36,3 +36,22 @@ class SearchViewTest(TestCase):
         }
 
         assert expected['points'] == simplejson.loads(response.content)['points']
+        
+    def test_search_returns_searching_for(self):
+        response = self.client.get(self.url, {'place':'Rio de Janeiro, Brazil'})
+
+        expected = {
+            'searching_for': 'Rio de Janeiro, Brazil',
+        }
+
+        assert expected['searching_for'] == simplejson.loads(response.content)['searching_for']
+
+    # def test_search_returns_expected_point(self):
+    #     response = self.client.get(self.url, {'place':'Rio de Janeiro, Brazil'})
+    #     
+    #     expected = {
+    #         'center_point': [-22.9963233069, -43.3637237549],
+    #     }
+    #     
+    #     assert expected['center_point'] == simplejson.loads(response.content)['center_point']
+        

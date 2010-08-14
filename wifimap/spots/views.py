@@ -39,8 +39,11 @@ def add_spot(request):
 
 def search_spots(request):
     json = {'points':[]}
-    
+        
     points = AccessPoint.objects.all()
+    
+    if request.GET:
+        json['searching_for'] = request.GET['place']
     
     for point in points:
         json['points'].append(
