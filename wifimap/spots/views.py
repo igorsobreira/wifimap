@@ -21,3 +21,6 @@ def add_spot(request):
         form = AccessPointForm()
     
     return render_to_response('spots/add.html', {'form': form})
+    
+def search_spots(request):
+    return render_to_response('spots/search.html', {})
