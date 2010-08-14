@@ -1,3 +1,10 @@
+function setUpForm(callback) {
+    SpotManager.init();
+    SpotManager.showAddForm();
+    setTimeout(callback, 500);
+    start();
+}
+
 module('SpotManager.add');
 
 asyncTest('Add button shows form', function(){
@@ -17,4 +24,17 @@ asyncTest('Add button shows form', function(){
         start();
     }, 200);
 
+});
+
+
+
+asyncTest('Submit invalid form shows error message', function() {
+    
+    setUpForm(function() {
+        
+        $('#content #submit-spot').click();
+        
+    });
+    
+    
 });
