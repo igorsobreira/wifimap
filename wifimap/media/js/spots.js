@@ -1,11 +1,12 @@
 var SpotManager = { 
     init: function () {
         this.listSpots();
-        
         $('#add-spot').unbind('click').click(function(){
             SpotManager.showForm();
             return false;
         });
+    },
+    bindFormSubmit: function() {
         $('#submit-spot').unbind('click').click(function() {
             SpotManager.submitForm();
             return false;
