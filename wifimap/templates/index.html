@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block head %}
+    {{ block.super }}
+    <script type="text/javascript" src="/media/js/map.js"></script>
+{% endblock %}
+
 {% block content %}
 <header>
     <form method="get" action="{% url spots_search %}" id="search-form">
@@ -7,7 +12,6 @@
         <input type="submit" value="search" />
     </form>
 </header>
-<div id="map">
-</div>
+<div id="map" style="width: 100%; height: 200px;"></div>
 {% endblock %}
 

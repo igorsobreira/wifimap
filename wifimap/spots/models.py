@@ -6,8 +6,8 @@ class AccessPoint(models.Model):
     address = models.CharField(_('address'), max_length=255)
     description = models.TextField(_('description'), blank=True)
     
-    lat = models.FloatField(editable=False)
-    lng = models.FloatField(editable=False)
+    lat = models.FloatField()
+    lng = models.FloatField()
     
     def __unicode__(self):
         return self.name
