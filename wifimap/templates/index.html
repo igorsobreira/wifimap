@@ -2,7 +2,7 @@
 
 {% block content %}
 <header>
-    <form method="get" action="" id="search-form">
+    <form method="get" action="{% url spots_search %}" id="search-form">
         <input type="text" name="place" />
         <input type="submit" value="search" />
     </form>
