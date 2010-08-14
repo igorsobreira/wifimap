@@ -3,6 +3,7 @@
 {% block head %}
     {{ block.super }}
     <script type="text/javascript" src="/media/js/map.js"></script>
+    <script type="text/javascript" src="/media/js/spots.js"></script>
     <link rel="stylesheet" href="/media/style/base.css" type="text/css" />
 {% endblock %}
 
@@ -20,7 +21,12 @@
 
 <div id="map"></div>
 
-<section id="content">
-</section>
+<section id="content"></section>
+
+<script type="text/javascript" charset="utf-8">
+    Map.init();
+    SpotManager.init();
+</script>
+
 {% endblock %}
 
