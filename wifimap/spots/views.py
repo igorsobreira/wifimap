@@ -8,7 +8,7 @@ from django.utils import simplejson
 
 from spots.forms import AccessPointForm
 from spots.models import AccessPoint
-from spots.lib import geocode
+from spots.lib import geocode, point_by_ip
 
 def index(request):
     return direct_to_template(request, 'index.html', extra_context={})
@@ -42,9 +42,7 @@ def search_spots(request):
         
     points = AccessPoint.objects.all()
     
-    
-    
-    if request.GET:
+    if request.GET.has_key('place'):
         geo_data = geocode(request.GET['place'])
         
         address = geo_data['Placemark'][0]['address']

@@ -20,15 +20,15 @@ class SearchViewTest(TestCase):
         self.point2 = AccessPoint.objects.create(name='point 2', address='Porto Alegre, Brazil', lat=24, lng=24)
         
     def test_view_exists(self):
-        response = self.client.get(self.url)    
+        response = self.client.get(self.url, {'place':'Rio de Janeiro, Brazil'}) 
         assert 200 == response.status_code
         
     def test_search_return_a_json(self):
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, {'place':'Rio de Janeiro, Brazil'})
         assert response.items()[0][1] == 'application/json'
     
     def test_search_returns_all_points(self):
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, {'place':'Rio de Janeiro, Brazil'})
         
         expected = {
             'points': [
