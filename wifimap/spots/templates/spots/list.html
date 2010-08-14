@@ -1,4 +1,5 @@
 {% for spot in spots %}
     <p>{{ spot.name }}</p>
     <p>{{ spot.address }}</p>
+    <a href="{% url spot_detail spot.id %}">see more</a>
 {% endfor %}
