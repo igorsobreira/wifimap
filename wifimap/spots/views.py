@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse
 from django.utils import simplejson
+from django.conf import settings
 
 from spots.forms import AccessPointForm
 from spots.models import AccessPoint
@@ -52,7 +53,10 @@ def search_spots(request):
             [lat, lng]
         ]
     else:
-        json['center_point'] = point_by_ip(request.META['REMOTE_ADDR'])
+        if settings.DEBUG:
+            json['center_point'] = point_by_ip('200.147.67.142')
+        else:
+            json['center_point'] = point_by_ip(request.META['REMOTE_ADDR'])
         
     json['template'] = list_spots(points)
 

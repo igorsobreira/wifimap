@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
+from django.conf import settings
 
 from spots.models import AccessPoint
 from spots.views import list_spots
@@ -12,6 +13,7 @@ class SearchViewTest(TestCase):
         self.add_some_points()
         self.access_points = AccessPoint.objects.all()
         self.response = self.client.get(self.url, {'place':'Rio de Janeiro, Brazil'}) 
+        settings.DEBUG = True
         
     def tearDown(self):
         AccessPoint.objects.all().delete()
@@ -47,3 +49,12 @@ class SearchViewTest(TestCase):
         template = list_spots(self.access_points)
                         
         assert template == simplejson.loads(self.response.content)['template']
+    
+    def test_search_returns_mock_ip_based_list_when_debug_true(self):
+        response = self.client.get(self.url) 
+        expected = {
+            'center_point': [u'Sao Paulo - S\xe3o Paulo, Brazil', [-23.548943300000001, -46.638818200000003]]
+        }
+                    
+        assert expected['center_point'] == simplejson.loads(response.content)['center_point']
+    
