@@ -6,6 +6,9 @@ html, body {
     color: #333;
 }
 
+a {
+    text-decoration: none;
+}
 input[type=button],
 input[type=submit] {
     border-radius: 5px;
@@ -140,3 +143,54 @@ footer {
     color: #4f7393;
 }
 
+#spot-list {
+}
+    #spot-list h2 {
+        font-weight: bold;
+    }
+
+.spot {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+    p.votes {
+        float: left;
+        text-align: center;
+        margin-right: 15px;
+        background: #99b3cc;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+    }
+        p.votes * {
+            display: block;
+        }
+        p.votes strong {
+            font-size: 25px;
+            padding: 0 10px;
+        }
+        p.votes span {
+            font-size: 11px;
+            padding: 0 10px;
+        }
+        p.votes a {
+            background: #6385a5;
+            color: white;
+            font-weight: bold;
+        }
+        p.votes a.vote-up {
+            background: #44960d;
+            border-radius: 5px 5px 0 0;
+            -moz-border-radius: 5px 5px 0 0;
+            -webkit-border-radius: 5px 5px 0 0;
+        }
+        p.votes a.vote-down {
+            background: #c00;
+            border-radius: 0 0 5px 5px;
+            -moz-border-radius: 0 0 5px 5px;
+            -webkit-border-radius: 0 0 5px 5px;
+        }
+
+    .spot .info {
+        float: left;
+    }
