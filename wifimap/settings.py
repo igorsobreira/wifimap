@@ -35,7 +35,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-MEDIA_ROOT = ''
+MEDIA_ROOT = _abs(PROJECT_ROOT, 'media')
 
 MEDIA_URL = ''
 
@@ -68,6 +68,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
+    'spots',
 )
