@@ -37,9 +37,8 @@ USE_L10N = True
 
 MEDIA_ROOT = _abs(PROJECT_ROOT, 'media')
 
-MEDIA_URL = ''
-
-ADMIN_MEDIA_PREFIX = '/media/'
+MEDIA_URL = '/media/'
+ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 SECRET_KEY = 'f@#5anc^=wftvgd4em4gw@i!f(vjhg0ir2wc_u9$r%jkj)8%7e'
 
