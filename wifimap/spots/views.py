@@ -4,6 +4,7 @@ from django.views.generic.simple import direct_to_template
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse
 from django.utils import simplejson
+from geocoders.google import geocoder
 
 from spots.forms import AccessPointForm
 from spots.models import AccessPoint
@@ -43,7 +44,8 @@ def search_spots(request):
     points = AccessPoint.objects.all()
     
     if request.GET:
-        json['searching_for'] = request.GET['place']
+        geocode = geocoder()
+        json['center_point'] = geocode(request.GET['place'])
     
     for point in points:
         json['points'].append(
