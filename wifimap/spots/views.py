@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response
 from django.views.generic.simple import direct_to_template
+from django.utils.translation import ugettext as _
 
 from spots.forms import AccessPointForm
 
@@ -20,9 +21,9 @@ def add_spot(request):
             ap.lat = request.POST['lat']
             ap.lng = request.POST['lng']
             ap.save()
-            success_message = u"Your point has been saved"
+            success_message = _(u"Your point has been saved")
         else:
-            error_message = u"Please correct the errors below"
+            error_message = _(u"Please correct the errors below")
     
     if request.method == 'GET' or success_message:
         form = AccessPointForm()
