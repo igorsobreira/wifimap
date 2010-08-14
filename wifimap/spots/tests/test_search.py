@@ -3,12 +3,14 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson
 
 from spots.models import AccessPoint
+from spots.views import list_spots
 
 class SearchViewTest(TestCase):
     
     def setUp(self):
         self.url = reverse('spots_search')
         self.add_some_points()
+        self.access_points = AccessPoint.objects.all()
         
     def tearDown(self):
         AccessPoint.objects.all().delete()
@@ -46,11 +48,10 @@ class SearchViewTest(TestCase):
                         
         assert expected['center_point'] == simplejson.loads(response.content)['center_point']
         
-    # def test_search_returns_template_with_neighbors_points(self):
-    #     response = self.client.get(self.url, {'place':'Rio de Janeiro, Brazil'})
-    #     
-    #     expected = {
-    #         'center_point': ["Rio de Janeiro - RJ, Brazil", [-22.903539299999998, -43.209586899999998]]
-    #     }
-    #                     
-    #     assert expected[''] == simplejson.loads(response.content)['center_point']
+    def test_search_returns_template_with_access_point_list(self):
+        response = self.client.get(self.url, {'place':'Rio de Janeiro, Brazil'})
+        
+        
+        template = list_spots(self.access_points)
+                        
+        assert template == simplejson.loads(response.content)['template']

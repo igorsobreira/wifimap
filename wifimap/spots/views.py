@@ -52,6 +52,8 @@ def search_spots(request):
             address, 
             [lat, lng]
         ]
+        
+        json['template'] = list_spots(points)
 
     for point in points:
         json['points'].append(
