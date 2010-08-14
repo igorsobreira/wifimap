@@ -35,7 +35,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-MEDIA_ROOT = ''
+MEDIA_ROOT = _abs(PROJECT_ROOT, 'media')
 
 MEDIA_URL = ''
 
