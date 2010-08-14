@@ -63,3 +63,6 @@ def search_spots(request):
 def list_spots(spots):
     return render_to_string('spots/list.html', {'spots':spots})
     
+def spot(request, id):
+    return render_to_response('spots/detail.html', {})
+    
