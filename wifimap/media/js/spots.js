@@ -1,11 +1,12 @@
 var SpotManager = { 
     init: function () {
         this.listSpots();
-        
         $('#add-spot').unbind('click').click(function(){
             SpotManager.showForm();
             return false;
         });
+    },
+    bindFormSubmit: function() {
         $('#submit-spot').unbind('click').click(function() {
             SpotManager.submitForm();
             return false;
@@ -29,14 +30,21 @@ var SpotManager = {
     formSubmitted: function(response) {
         $('#content').html(response);
     },
+    addSpotsToMap: function(points) {
+         $.each(points, function(index, point){
+            Map.addPoint(point); 
+         });
+    },
     listSpots: function() {
+        var self = this;
         $.ajax({
             url: '/spots/search/',
             method: 'GET',
             dataType: 'json',
             success: function(data){
-                this.center_point = data.center_point;
                 $('#content').html(data.template);
+                Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+                self.addSpotsToMap(data.points);
             }
         });   
     }
