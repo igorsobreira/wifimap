@@ -42,13 +42,15 @@ header {
             outline: 0;
             background: transparent;
             padding: 0 5px;
-            width: 630px;
+            width: 600px;
         }
         header form input[type=button],
         header form input[type=submit] {
             padding: 2px 5px;
             border-width: 0;
             border-radius: 0 5px 5px 0;
+            -moz-border-radius: 0 5px 5px 0;
+            -webkit-border-radius: 0 5px 5px 0;
             background: #6385a5;
             color: white;
         }
