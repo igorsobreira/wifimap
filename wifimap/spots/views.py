@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response
+from django.views.generic.simple import direct_to_template
 
 from spots.forms import AccessPointForm
 
 
 def index(request):
-    return render_to_response('index.html', {})
+    return direct_to_template(request, 'index.html', extra_context={})
 
 
 def add_spot(request):
