@@ -13,7 +13,6 @@ from spots.lib import geocode
 def index(request):
     return direct_to_template(request, 'index.html', extra_context={})
 
-
 def add_spot(request):
     success_message = None
     error_message = None
