@@ -1,7 +1,10 @@
+from xml.etree import ElementTree
+
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
 from spots.models import AccessPoint
+
 
 class AddViewTest(TestCase):
     
@@ -11,6 +14,12 @@ class AddViewTest(TestCase):
     def test_view_exists(self):
         response = self.client.get(self.url)    
         assert 200 == response.status_code
+    
+    def test_lat_lng_fields_are_hidden(self):
+        response = self.client.get(self.url)
+        
+        assert u'<input type="hidden" name="lat" id="id_lat" />' in response.content
+        assert u'<input type="hidden" name="lng" id="id_lng" />' in response.content
     
     def test_submit_valid_form(self):
         post = {
@@ -33,4 +42,4 @@ class AddViewTest(TestCase):
         assert 200 == response.status_code
         assert 0 == AccessPoint.objects.count()
         assert u"Please correct the errors below"
-        
+    
