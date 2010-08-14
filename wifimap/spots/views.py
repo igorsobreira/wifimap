@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.views.generic.simple import direct_to_template
+from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse
 from django.utils import simplejson
@@ -51,11 +52,18 @@ def search_spots(request):
             address, 
             [lat, lng]
         ]
-                
+
     for point in points:
         json['points'].append(
             (point.lat, point.lng,)
         )
     
     return HttpResponse(simplejson.dumps(json), mimetype="application/json")
+    
+def list_spots(spots):
+    return render_to_string('spots/list.html', {'spots':spots})
+    
+def spot(request, id):
+    access_point = get_object_or_404(AccessPoint, id=id)
+    return render_to_response('spots/detail.html', {'spot':access_point})
     
