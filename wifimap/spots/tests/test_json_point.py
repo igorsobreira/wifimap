@@ -16,4 +16,7 @@ class JsonPointTest(TestCase):
     def test_view_exists(self):
         assert 200 == self.response.status_code
         
+    def test_view_returns_json(self):
+        assert self.response.items()[0][1] == 'application/json'
+        
 

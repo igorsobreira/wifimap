@@ -76,4 +76,4 @@ def spot(request, id):
 
 def spot_json(request, id):
     access_point = get_object_or_404(AccessPoint, id=id)
-    return HttpResponse('')    
+    return HttpResponse('', mimetype="application/json")    
