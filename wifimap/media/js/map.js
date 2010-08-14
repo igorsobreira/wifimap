@@ -37,7 +37,8 @@ $(function(){
     var mapOptions = {
         zoom: 8,
         center: spot,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: false
     };
     var map = new google.maps.Map(mapContainer[0], mapOptions);
 
