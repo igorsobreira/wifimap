@@ -42,6 +42,8 @@ def search_spots(request):
         
     points = AccessPoint.objects.all()
     
+    
+    
     if request.GET:
         geo_data = geocode(request.GET['place'])
         
@@ -51,8 +53,10 @@ def search_spots(request):
             address, 
             [lat, lng]
         ]
+    else:
+        json['center_point'] = point_by_ip(request.META['REMOTE_ADDR'])
         
-        json['template'] = list_spots(points)
+    json['template'] = list_spots(points)
 
     for point in points:
         json['points'].append(

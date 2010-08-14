@@ -15,5 +15,3 @@ class PointByIpTest(TestCase):
     def test_point_by_ip_with_another_city(self):
         point = point_by_ip('208.113.199.25')
         assert point == ['Brea, CA, USA', [33.916680499999998, -117.9000604]]
-        
-        
