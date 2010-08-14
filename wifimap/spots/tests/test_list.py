@@ -27,3 +27,7 @@ class ListViewTest(TestCase):
     def test_address_in_spots_list(self):
         response = list_spots(self.access_points)
         assert 'Rio de Janeiro, Brazil' in response
+        
+    def test_see_more_in_spots_list(self):
+        response = list_spots(self.access_points)
+        assert 'see more' in response
