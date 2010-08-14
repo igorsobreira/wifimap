@@ -24,5 +24,11 @@ var Map = {
     },
     formSubmitted: function(response) {
         $('#content').html(response);
+    },
+    addPoint: function(point) {
+        var marker = new google.maps.Marker({
+             position: new google.maps.LatLng(point[0], point[1]),
+         });
+         marker.setMap(this.map);
     }
-}
+};
