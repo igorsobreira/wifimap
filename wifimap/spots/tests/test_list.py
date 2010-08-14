@@ -7,6 +7,7 @@ class ListViewTest(TestCase):
     
     def setUp(self):
         self.add_some_points()
+        self.access_points = AccessPoint.objects.all()
         
     def tearDown(self):
         AccessPoint.objects.all().delete()
@@ -16,9 +17,13 @@ class ListViewTest(TestCase):
         self.point2 = AccessPoint.objects.create(name='point 2', address='Porto Alegre, Brazil', lat=24, lng=24)
         
     def test_list_spots(self):
-        response = list_spots(AccessPoint.objects.all())
+        response = list_spots(self.access_points)
         assert 'point 1' in response
         
     def test_name_in_spots_list(self):
-        response = list_spots(AccessPoint.objects.all())
+        response = list_spots(self.access_points)
         assert 'point 1' in response
+        
+    def test_address_in_spots_list(self):
+        response = list_spots(self.access_points)
+        assert 'Rio de Janeiro, Brazil' in response
