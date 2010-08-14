@@ -3,6 +3,7 @@
 {% block head %}
     {{ block.super }}
     <script type="text/javascript" src="/media/js/map.js"></script>
+    <link rel="stylesheet" href="/media/style/base.css" type="text/css" />
 {% endblock %}
 
 {% block content %}
@@ -11,7 +12,13 @@
         <input type="text" name="place" />
         <input type="submit" value="search" />
     </form>
+
+    <button type="submit" id="add-spot">add</button>
 </header>
+
 <div id="map" style="width: 100%; height: 200px;"></div>
+
+<div id="content">
+</div>
 {% endblock %}
 

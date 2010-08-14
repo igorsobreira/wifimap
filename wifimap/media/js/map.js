@@ -1,3 +1,10 @@
+var SpotManager = { 
+    init: function () {
+    },
+    add: function () {
+    }
+};
+
 $(function(){
     // Map Initialization
     var mapContainer = $('#map');
@@ -8,4 +15,9 @@ $(function(){
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(mapContainer[0], mapOptions);
+
+    var content = $('#content');
+
+    var addButton = $('#add-spot');
 });
+
