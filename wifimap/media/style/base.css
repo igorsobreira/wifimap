@@ -36,6 +36,7 @@ header {
     header h1 {
         float: left;
         font-size: 25px;
+        font-weight: bold;
         margin-right: 10px;
         padding: 5px;
         color: #4f7393;
@@ -81,6 +82,14 @@ header {
 #content {
     padding-top: 20px;
 }
+    #content h1 {
+        font-size: 20px;
+        font-weight: bold;
+        color: #4f7393;
+        border-bottom: 3px dashed #4f7393;
+        margin-bottom: 20px;
+        text-indent: 10px;
+    }
     #content form {
         width: 425px;
     }
