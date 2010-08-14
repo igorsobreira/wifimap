@@ -23,6 +23,8 @@ class AddViewTest(TestCase):
         
         assert 200 == response.status_code
         assert 1 == AccessPoint.objects.count()
+        assert u"Your point has been saved" in response.content
+    
     
     def test_submit_invalid_form_show_errors(self):
         post = {'foo': 'all empty'}
@@ -30,3 +32,5 @@ class AddViewTest(TestCase):
         
         assert 200 == response.status_code
         assert 0 == AccessPoint.objects.count()
+        assert u"Please correct the errors below"
+        
