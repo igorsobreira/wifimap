@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^$', 'spots.views.index', name='spots_index'),
 
     url(r'^spots/add/$', 'spots.views.add_spot', name='spots_add'),
+    url(r'^spots/(?P<id>\d+)/$', 'spots.views.spot', name='spot_detail'),
     url(r'^spots/search/$', 'spots.views.search_spots', name='spots_search'),
 )
 

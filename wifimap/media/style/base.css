@@ -1,2 +1,128 @@
-form.form {
+/* Structure */
+html, body {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background: #eee;
+    color: #333;
 }
+
+input[type=button],
+input[type=submit] {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: #6385a5;
+    color: white;
+    padding: 2px 8px;
+    border-width: 0;
+}
+textarea,
+input[type=text] {
+    padding: 2px 8px;
+    outline: 0;
+}
+
+header,
+#content,
+footer {
+    width: 900px;
+    padding: 10px;
+    margin: 0 auto;
+    background: #ccccfc;
+    display: block;
+    overflow: hidden;
+}
+
+header {
+}
+    header h1 {
+        float: left;
+        font-size: 25px;
+        font-weight: bold;
+        margin-right: 10px;
+        padding: 5px;
+        color: #4f7393;
+    }
+    header form {
+        float: left;
+        margin-right: 10px;
+        padding: 5px;
+    }
+        header form span {
+            background: #99b3cc;
+            display: inline-block;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            margin-right: 10px;
+        }
+        header form input {
+            font-size: 25px;
+        }
+        header form input[type=text] {
+            border: 0;
+            outline: 0;
+            background: transparent;
+            padding: 0 5px;
+            width: 600px;
+        }
+        header form input[type=submit] {
+            border-radius: 0 5px 5px 0;
+            -moz-border-radius: 0 5px 5px 0;
+            -webkit-border-radius: 0 5px 5px 0;
+            position: relative;
+            left: 1px;
+        }
+
+#map {
+    border: solid #4f7393;
+    border-width: 3px 0;
+    width: 100%;
+    height: 300px;
+}
+
+#content {
+    padding-top: 20px;
+}
+    #content h1 {
+        font-size: 20px;
+        font-weight: bold;
+        color: #4f7393;
+        border-bottom: 3px dashed #4f7393;
+        margin-bottom: 20px;
+        text-indent: 10px;
+    }
+    #content form {
+        width: 425px;
+    }
+    #content form p {
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+    #content label {
+        display: inline-block;
+        width: 100px;
+        text-align: right;
+    }
+    #content textarea,
+    #content input[type=text] {
+        width: 300px;
+        border: 0;
+        vertical-align: top;
+        background: #99b3cc;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        float: right;
+    }
+    #content input[type=submit] {
+        float: right;
+    }
+
+footer {
+    background: #ccccfc;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccccfc), to(#eee));
+    background: -moz-linear-gradient(top, #ccccfc,  #eee);
+    color: #4f7393;
+}
+
