@@ -18,3 +18,7 @@ class ListViewTest(TestCase):
     def test_list_spots(self):
         response = list_spots(AccessPoint.objects.all())
         assert 'point 1' in response
+        
+    def test_name_in_spots_list(self):
+        response = list_spots(AccessPoint.objects.all())
+        assert 'point 1' in response
