@@ -8,12 +8,14 @@
 
 {% block content %}
 <header>
+    <h1>o)))</h1>
     <form method="get" action="{% url spots_search %}" id="search-form">
-        <input type="text" name="place" />
-        <input type="submit" value="search" />
+        <span>
+            <input type="text" name="place" />
+            <input type="submit" value="search" />
+        </span>
+        <input type="button" id="add-spot" value="+ add" />
     </form>
-
-    <button type="submit" id="add-spot">add</button>
 </header>
 
 <div id="map" style="width: 100%; height: 200px;"></div>

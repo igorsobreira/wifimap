@@ -1,2 +1,64 @@
-form.form {
+/* Structure */
+body {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    background: #eee;
 }
+header, #content {
+    width: 900px;
+    padding: 10px;
+    margin: 0 auto;
+    background: #ccccfc;
+    display: block;
+    overflow: hidden;
+}
+
+header {
+}
+    header h1 {
+        float: left;
+        font-size: 25px;
+        margin-right: 10px;
+        padding: 5px;
+        color: #4f7393;
+    }
+    header form {
+        float: left;
+        margin-right: 10px;
+        padding: 5px;
+    }
+        header form span {
+            background: #99b3cc;
+            display: inline-block;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            margin-right: 10px;
+        }
+        header form input {
+            font-size: 25px;
+        }
+        header form input[type=text] {
+            border: 0;
+            outline: 0;
+            background: transparent;
+            padding: 0 5px;
+            width: 630px;
+        }
+        header form input[type=button],
+        header form input[type=submit] {
+            padding: 2px 5px;
+            border-width: 0;
+            border-radius: 0 5px 5px 0;
+            background: #6385a5;
+            color: white;
+        }
+        header form input[type=submit] {
+            position: relative;
+            left: 1px;
+        }
+        header form input[type=button] {
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+        }
+
