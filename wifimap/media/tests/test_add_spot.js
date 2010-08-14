@@ -1,28 +1,20 @@
 module('SpotManager.add');
 
-test('Test button click', function(){
-    stop();
-    expect(4);
+asyncTest('Add button shows form', function(){
+    expect(2);
 
-    /*
     var content = $('#content');
+    var addButton = $('#add-spot');
 
-    equals(content.length, 1);
-    equals(content.html(), '');
+    equals(content.html(), '', 'Content div should be empty')
 
     SpotManager.init();
-    var addButton = $('#add-spot')
-    equals(addButton.length, 1);
+
     addButton.click();
-    */
 
     setTimeout(function(){
-        alert('xxx');
-        ok(content.html() != '');
+        equals(content.find('form').length, 1, 'The form should be loaded.');
         start();
-    }, 100);
-
+    }, 200);
 
 });
-
-start();

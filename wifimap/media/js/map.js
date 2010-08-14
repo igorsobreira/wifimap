@@ -1,7 +1,19 @@
 var SpotManager = { 
     init: function () {
+        $('#add-spot').click(function(){
+            SpotManager.showAddForm();
+            return false;
+        });
     },
-    add: function () {
+    showAddForm: function () {
+        $.ajax({
+            url: '/spots/add/',
+            method: 'GET',
+            dataType: 'html',
+            success: function(response){
+                $('#content').html(response);
+            }
+        });
     }
 };
 
@@ -16,8 +28,7 @@ $(function(){
     };
     var map = new google.maps.Map(mapContainer[0], mapOptions);
 
-    var content = $('#content');
-
-    var addButton = $('#add-spot');
+    // Installs spot manager
+    SpotManager.init();
 });
 
