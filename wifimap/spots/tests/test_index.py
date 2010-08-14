@@ -13,10 +13,7 @@ class IndexViewTest(TestCase):
         response = self.client.get(reverse('spots_index'))
         self.assertTemplateUsed(response, 'index.html')
 
-    #def test_index_extends_base(self):
-    #    response = self.client.get(reverse('spots_index'))
-
-    #def test_has_map_div(self):
-    #    response = self.client.get(reverse('spots_index'))
-    #    self.assertContains(response, '<div id="map"')
+    def test_has_map_div(self):
+        response = self.client.get(reverse('spots_index'))
+        assert '<div id="map"' in response.content
 
