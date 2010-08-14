@@ -2,8 +2,11 @@
 from django.shortcuts import render_to_response
 from django.views.generic.simple import direct_to_template
 from django.utils.translation import ugettext as _
+from django.http import HttpResponse
+from django.utils import simplejson
 
 from spots.forms import AccessPointForm
+from spots.models import AccessPoint
 
 
 def index(request):
@@ -35,5 +38,14 @@ def add_spot(request):
         })
 
 def search_spots(request):
-    return render_to_response('spots/search.html', {})
+    json = {'points':[]}
+    
+    points = AccessPoint.objects.all()
+    
+    for point in points:
+        json['points'].append(
+            (point.lat, point.lng,)
+        )
+    
+    return HttpResponse(simplejson.dumps(json), mimetype="application/json")
 
