@@ -21,4 +21,4 @@ class IndexViewTest(TestCase):
         assert '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>' in self.response.content
     
     def test_index_has_search_form(self):
-        '<form method="get" action="" id="search-form">' in self.response
+        assert '<form method="get" action="/spots/search/" id="search-form">' in self.response.content
