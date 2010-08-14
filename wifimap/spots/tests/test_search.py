@@ -43,5 +43,5 @@ class SearchViewTest(TestCase):
         expected = {
             'center_point': ["Rio de Janeiro - RJ, Brazil", [-22.903539299999998, -43.209586899999998]]
         }
-                
+                        
         assert expected['center_point'] == simplejson.loads(response.content)['center_point']

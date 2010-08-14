@@ -7,8 +7,7 @@ from django.utils import simplejson
 
 from spots.forms import AccessPointForm
 from spots.models import AccessPoint
-
-import urllib
+from spots.lib import geocode
 
 def index(request):
     return direct_to_template(request, 'index.html', extra_context={})
@@ -44,8 +43,15 @@ def search_spots(request):
     points = AccessPoint.objects.all()
     
     if request.GET:
-        json['center_point'] = geocode(request.GET['place'])
-    
+        geo_data = geocode(request.GET['place'])
+        
+        address = geo_data['Placemark'][0]['address']
+        lng, lat = geo_data['Placemark'][0]['Point']['coordinates'][:2]
+        json['center_point'] = [
+            address, 
+            [lat, lng]
+        ]
+                
     for point in points:
         json['points'].append(
             (point.lat, point.lng,)
@@ -53,19 +59,3 @@ def search_spots(request):
     
     return HttpResponse(simplejson.dumps(json), mimetype="application/json")
     
-def geocode(q):
-    json = simplejson.load(urllib.urlopen(
-        'http://maps.google.com/maps/geo?' + urllib.urlencode({
-            'q': q,
-            'output': 'json',
-            'oe': 'utf8',
-            'sensor': 'false',
-        })
-    ))
-    try:
-        lon, lat = json['Placemark'][0]['Point']['coordinates'][:2]
-    except (KeyError, IndexError):
-        return None, (None, None)
-    name = json['Placemark'][0]['address']
-    return name, (lat, lon)
-
