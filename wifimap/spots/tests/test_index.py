@@ -19,5 +19,5 @@ class IndexViewTest(TestCase):
 
     def test_uses_maps_api(self):
         response = self.client.get(reverse('spots_index'))
-        assert '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>' in response.content
+        assert '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>' in response.content
 
