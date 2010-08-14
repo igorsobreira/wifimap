@@ -19,4 +19,11 @@
     $('#id_lat').val( Map.map.getCenter().lat() );
     $('#id_lng').val( Map.map.getCenter().lat() );
     
+    Map.addMarkerToAdd({
+        position: Map.map.getCenter(),
+        draggable: true
+    });
+    
+    // TODO: when leaving this page: hide the "Map.markerToAdd" from Map
+    
 </script>
