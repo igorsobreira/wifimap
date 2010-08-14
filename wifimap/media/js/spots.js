@@ -35,8 +35,9 @@ var SpotManager = {
             method: 'GET',
             dataType: 'json',
             success: function(data){
-                this.center_point = data.center_point;
+                this.centerPoint = data.center_point;
                 $('#content').html(data.template);
+                Map.map.setCenter(new google.maps.LatLng(this.centerPoint[1][0], this.centerPoint[1][1]));
             }
         });   
     }
