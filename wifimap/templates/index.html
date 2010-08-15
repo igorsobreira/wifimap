@@ -5,12 +5,14 @@
     <script type="text/javascript" src="/media/js/map.js"></script>
     <script type="text/javascript" src="/media/js/spots.js"></script>
     <script type="text/javascript" src="/media/js/votes.js"></script>
+    <script type="text/javascript" src="/media/js/page.js"></script>
+    <script type="text/javascript" src="/media/js/urlconf.js"></script>
     <link rel="stylesheet" href="/media/style/base.css" type="text/css" />
 {% endblock %}
 
 {% block content %}
 <header>
-    <h1>o)))</h1>
+    <h1><a href="#/" class="page-url">o)))</a></h1>
     <form method="get" action="{% url spots_search %}" id="search-form">
         <span>
             <input type="text" name="place" />
@@ -28,6 +30,19 @@
     Map.init();
     SpotManager.init();
     Voting.init();
+    
+    $('#add-spot').click(function() {
+        Page.load('/spots/add');
+        return false;
+    });
+    
+    // every link to a page should have this class, the above #add-spot should be refactored
+    $('.page-url').click(function() {
+        var url = $(this).attr('href');
+        Page.load(url);
+        return false;
+    });
+    
 </script>
 
 {% endblock %}

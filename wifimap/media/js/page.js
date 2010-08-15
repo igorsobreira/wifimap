@@ -1,4 +1,7 @@
 
+/*
+ * This object abstracts all the logic of loading and unloading a Page
+ */
 var Page = {
     
     loadCallbacks: {},
@@ -49,4 +52,39 @@ var Page = {
         return called;
     }
     
-}
+};
+
+
+/*
+ * Objects to manage load and unload stages of specific pages
+ */
+
+var AddSpotPage = {
+    load: function() {
+        
+        console.log('loading page');
+        
+        SpotForm.bindSubmit();
+        
+        Map.followCenter( function(lat, lng) {
+            SpotForm.updateLatLng( new google.maps.LatLng(lat, lng) );
+        });
+    
+        // update form fields with initial values
+        SpotForm.updateLatLng( Map.map.getCenter() );
+        Map.getAddressFromLatLng( 
+            Map.map.getCenter(), 
+            SpotForm.updateAddress 
+        );
+        
+        Map.addCenterMarkerButton();
+        
+        Map.addMarkerToAdd({
+            position: Map.map.getCenter(),
+        });
+        
+    },
+    unload: function() {
+        console.log('unloading page');
+    }
+};
