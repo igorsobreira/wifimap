@@ -97,23 +97,6 @@ test("When loading a new page, update Page.lastUrl", function() {
     
 });
 
-test("When loading the same location.hash, don't forget the previous", function() {
-    expect(3);
-    
-    window.location.hash = "#/spots/add";
-    Page.lastUrl = "/spots/search";
-    
-    Page.registerLoadUrl("^/spots/add", function() {
-        ok( 1, "I should be called" );
-    });
-    
-    Page.load("/spots/add");
-    
-    equals( Page.lastUrl, "/spots/search" );
-    equals( window.location.hash, "#/spots/add" );
-    
-});
-
 start();
 
 QUnit.testStart = function(name) {
