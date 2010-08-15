@@ -2,22 +2,24 @@
 html, body {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 16px;
-    background: #eee;
-    color: #333;
+    background: #fff;
+    color: #666;
 }
 
 a {
     text-decoration: none;
-    color: #6385a5;
+    color: #0074c5;
+    font-weight: bold;
 }
 
+button,
 input[type=button],
 input[type=submit] {
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background: #6385a5;
-    color: white;
+    background: #0074c5;
+    color: #fff;
     padding: 2px 8px;
     border-width: 0;
 }
@@ -33,7 +35,7 @@ footer {
     width: 900px;
     padding: 10px;
     margin: 0 auto;
-    background: #ccccfc;
+    background: #fff;
     display: block;
     overflow: hidden;
 }
@@ -42,26 +44,43 @@ header {
 }
     header h1 {
         float: left;
-        font-size: 25px;
+        overflow: hidden;
+    }
+        header h1 a {
+            display: block;
+            background: url(logo-wifimap.png) no-repeat center top;
+            width: 90px;
+            padding-top: 90px;
+            overflow: hidden;
+            font-weight: bold;
+            text-align: center;
+            color: #0074c5;
+            font-size: 20px;
+        }
+    header h2 {
+        margin: 15px 0;
+        text-align: center;
+        font-style: oblique;
         font-weight: bold;
-        margin-right: 10px;
-        padding: 5px;
-        color: #4f7393;
+        color: #aaa;
+        font-size: 20px;
     }
     header form {
-        float: left;
+        float: right;
         margin-right: 10px;
         padding: 5px;
     }
         header form span {
-            background: #99b3cc;
+            border: 2px solid #0074c5;
+            background: #f0f0f0;
             display: inline-block;
             border-radius: 5px;
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
             margin-right: 10px;
         }
-        header form input, header form button {
+        header form input,
+        header form button {
             font-size: 25px;
         }
         header form input[type=text] {
@@ -69,18 +88,21 @@ header {
             outline: 0;
             background: transparent;
             padding: 0 5px;
-            width: 600px;
+            width: 530px;
         }
         header form button {
-            border-radius: 0 5px 5px 0;
-            -moz-border-radius: 0 5px 5px 0;
-            -webkit-border-radius: 0 5px 5px 0;
-            position: relative;
-            left: 1px;
+            border-radius: 0;
+            -moz-border-radius: 0;
+            -webkit-border-radius: 0;
+        }
+        header form input#add-spot {
+            font-weight: bold;
+            border: 2px solid #008000;
+            background: #008000;
         }
 
 #map {
-    border: solid #4f7393;
+    border: solid #666;
     border-width: 3px 0;
     width: 100%;
     height: 300px;
@@ -150,10 +172,8 @@ header {
     }
 
 footer {
-    background: #ccccfc;
-    background: -webkit-gradient(linear, left top, left bottom, from(#ccccfc), to(#eee));
-    background: -moz-linear-gradient(top, #ccccfc,  #eee);
-    color: #4f7393;
+    text-align: center;
+    font-weight: bold;
 }
 
 #spot-list {
@@ -166,7 +186,8 @@ footer {
     float: left;
     margin-bottom: 20px;
     overflow: hidden;
-    width: 49%;
+    width: 440px;
+    margin-right: 10px;
 }
     p.votes {
         float: left;

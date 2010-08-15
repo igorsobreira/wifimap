@@ -7,12 +7,13 @@
     <script type="text/javascript" src="/media/js/votes.js"></script>
     <script type="text/javascript" src="/media/js/page.js"></script>
     <script type="text/javascript" src="/media/js/urlconf.js"></script>
-    <link rel="stylesheet" href="/media/style/base.css" type="text/css" />
+    <link rel="stylesheet" href="/media/style/new-base.css" type="text/css" />
 {% endblock %}
 
 {% block content %}
 <header>
-    <h1><a href="#/" class="page-url">o)))</a></h1>
+    <h1><a href="#/" title="WiFi Map" class="page-url">WiFi Map</a></h1>
+    <h2>Find WiFi Access Points around the world!</h2>
     <form method="get" action="{% url spots_search %}" id="search-form">
         <span>
             <input type="text" name="place" />
