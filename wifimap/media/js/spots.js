@@ -1,5 +1,9 @@
 var SpotManager = { 
     init: function () {
+        
+        //default center location
+        $('#search-form input[type=text]').val('Rio de Janeiro, Brazil');
+        
         this.bindSearchSubmit();
         
         // this should go to #/spots/add load callback
