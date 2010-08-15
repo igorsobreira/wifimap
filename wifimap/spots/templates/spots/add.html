@@ -12,7 +12,6 @@
     SpotForm.bindSubmit();
     
     Map.followCenter( function(lat, lng) {
-        console.log(lat);
         SpotForm.updateLatLng( new google.maps.LatLng(lat, lng) );
     });
     
