@@ -1,6 +1,7 @@
 var SpotManager = { 
     init: function () {
         this.listSpots();
+        this.bindSearchSubmit();
         $('#add-spot').unbind('click').click(function(){
             SpotForm.show();
             return false;
@@ -52,6 +53,13 @@ var SpotManager = {
                 return false;
             });
         });
+    },
+    bindSearchSubmit: function() {
+        var self = this;
+        $('#search-form').unbind('click').click(function() {
+            //self.sendSearchSubmit();
+            return false;
+        });        
     }
     
 };
