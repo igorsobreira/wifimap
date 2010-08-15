@@ -42,21 +42,37 @@ var SpotManager = {
             url: '/spots/search/',
             method: 'GET',
             dataType: 'json',
-            success: function(data){                
+            success: function(data){   
+                /* 
+                console.log('foo')            
                 if (navigator.geolocation) {
+                    console.log('navigator')
                     navigator.geolocation.getCurrentPosition(function(){
                         var initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
                         Map.map.setCenter(initialLocation);
                     }, function() {
+                        console.log('unnavigator')
                         Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
                     });
                 } else {
+                    console.log('=(')
                     Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));                        
                 }
+                */
                 
-                SpotManager.getAccessPointsListByBounds();
+                ///////////////////
+
+
                 
-                SpotManager.addSpotsToMap(data.points);
+                ///////////////
+                
+                
+                //Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+                
+                //console.log(navigator.geolocation);
+                
+                //SpotManager.getAccessPointsListByBounds();
+                //SpotManager.addSpotsToMap(data.points);
             }
         });   
     },

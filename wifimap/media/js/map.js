@@ -5,7 +5,7 @@ var Map = {
         this.container = $('#map');
         this.defaultOptions = {
             zoom: 15,
-            center: new google.maps.LatLng(-22.9963233069, -43.3637237549),
+            //center: new google.maps.LatLng(-22.9963233069, -43.3637237549),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: false
         };
@@ -19,6 +19,7 @@ var Map = {
         });
         
         this.markers = [];
+                
     },
     
     followCenter: function(callback) {
