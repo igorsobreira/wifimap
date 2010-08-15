@@ -35,6 +35,5 @@ var Map = {
          google.maps.event.addListener(marker, 'click', function() {
             SpotManager.getPointInformation(marker.id);
          });
-         
     }
 };
