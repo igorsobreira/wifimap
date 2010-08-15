@@ -57,10 +57,7 @@ def search_spots(request):
                 [lat, lng]
             ]
         else:
-            if settings.DEBUG:
-                json['center_point'] = point_by_ip('200.147.67.142')
-            else:
-                json['center_point'] = point_by_ip(request.META['REMOTE_ADDR'])
+            json['center_point'] = None
     else:
         if settings.DEBUG:
             json['center_point'] = point_by_ip('200.147.67.142')
