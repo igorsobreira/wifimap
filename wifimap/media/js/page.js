@@ -33,8 +33,7 @@ var Page = {
         this.unload( this.lastUrl );
         console.log(' [page] loading ' + url );
         this._callCallbacksFor(url, this.loadCallbacks);
-        if ( url != Page.getCurrent() )
-            this.lastUrl = url;
+        this.lastUrl = url;
     },
     unload: function(url) {
         console.log(' [page] unloading ' + url );
