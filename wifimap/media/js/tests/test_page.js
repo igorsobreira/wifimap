@@ -87,6 +87,13 @@ test("Load modifies location.hash", function(){
     equals( window.location.hash, "#/spots/add" );
 });
 
+test("Load modifies location.href even when there is no callback", function() {
+    
+    Page.load("/spots/search");
+    
+    equals( window.location.hash, "#/spots/search" );
+});
+
 start();
 
 QUnit.testStart = function(name) {
