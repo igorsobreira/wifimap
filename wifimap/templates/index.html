@@ -36,18 +36,18 @@
     SpotManager.init();
     Voting.init();
     
-    $('#add-spot').click(function() {
-        Page.load('/spots/add');
+    Page.init();
+    
+    $('#add-spot').unbind('click').click(function() {
+        location.hash = '#/spots/add';
         return false;
     });
     
-    // every link to a page should have this class, the above #add-spot should be refactored
-    $('.page-url').click(function() {
-        var url = $(this).attr('href').replace('#','');
-        Page.load(url);
-        return false;
+    $(window).hashchange(function() {
+        console.log( " ** hashchanged " + location.hash );
+        Page.load( Page.getCurrent() );
     });
-    
+
 </script>
 
 {% endblock %}

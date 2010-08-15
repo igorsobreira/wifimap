@@ -7,6 +7,10 @@ var Page = {
     loadCallbacks: {},
     unloadCallbacks: {},
     
+    init: function() {
+        this.lastUrl = Page.getCurrent();
+    },
+    
     clear: function() {
         this.loadCallbacks = {};
         this.unloadCallbacks = {};
@@ -26,11 +30,15 @@ var Page = {
     },
     
     load: function(url) {
+        console.log(' [page] loading ' + url );
+        
+        this.unload( this.lastUrl );
         this._callCallbacksFor(url, this.loadCallbacks);
-        this.unload( window.location.hash.substring(1) );
-        window.location.hash = "#" + url;
+        if ( url != Page.getCurrent() )
+            this.lastUrl = url;
     },
     unload: function(url) {
+        console.log(' [page] unloading ' + url );
         this._callCallbacksFor(url, this.unloadCallbacks);
     },
     _callCallbacksFor: function(url, collection) {
@@ -43,6 +51,10 @@ var Page = {
             for (var i=0; i<collection[u].length; i++)
                 collection[u][i]();
         };
+    },
+    
+    getCurrent: function() {
+        return location.hash.replace('#','');
     }
     
 };
@@ -54,6 +66,7 @@ var Page = {
 
 var AddSpotPage = {
     load: function() {
+        console.log('loading add');
         
         SpotForm.bindSubmit();
         
@@ -76,6 +89,7 @@ var AddSpotPage = {
         
     },
     unload: function() {
+        console.log('unloading add');
         Map.removeMarkerToAdd();
         Map.removeCenterMarkerButton();
     }
@@ -83,6 +97,7 @@ var AddSpotPage = {
 
 var SpotListPage = {
     load: function() {
+        console.log('loading list');
         SpotManager.listSpots();
     }
 };

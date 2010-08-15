@@ -53,10 +53,21 @@ test("Loading page", function() {
     
 });
 
+test("Load can't modifie location.hash", function(){
+    
+    Page.registerLoadUrl('^/spots/add$', function(){
+        ok( 1, "loaded" );
+    });
+    
+    Page.load("/spots/add");
+    
+    equals( window.location.hash, "" );
+    
+});
+
 test("Load to a new page, means unload the current one", function() {
     expect(3);
-    
-    window.location.hash = '#/';
+    Page.lastUrl = "/";
     
     Page.registerLoadUrl('^/spots', function(){
         ok( 1, "Loading /spots" );
@@ -76,41 +87,38 @@ test("Load to a new page, means unload the current one", function() {
     
 });
 
-test("Load url really unloads current one", function() {
-    expect(1);
+test("When loading a new page, update Page.lastUrl", function() {
     
-    window.location.hash = "#/spots/search";
-    
-    Page.registerUnloadUrl("^/spots/search$", function() {
-        ok( 1, "unloading /spots/search" );
-    });
+    Page.lastUrl = "/spots/add";
     
     Page.load("/");
     
+    equals( Page.lastUrl, "/" );
+    
 });
 
-test("Load modifies location.hash", function(){
+test("When loading the same location.hash, don't forget the previous", function() {
+    expect(3);
     
-    Page.registerLoadUrl('^/spots/add$', function(){
-        ok( 1, "loaded" );
+    window.location.hash = "#/spots/add";
+    Page.lastUrl = "/spots/search";
+    
+    Page.registerLoadUrl("^/spots/add", function() {
+        ok( 1, "I should be called" );
     });
     
     Page.load("/spots/add");
     
+    equals( Page.lastUrl, "/spots/search" );
     equals( window.location.hash, "#/spots/add" );
-});
-
-test("Load modifies location.href even when there is no callback", function() {
     
-    Page.load("/spots/search");
-    
-    equals( window.location.hash, "#/spots/search" );
 });
 
 start();
 
 QUnit.testStart = function(name) {
     Page.clear();
+    Page.init();
 };
 
 QUnit.testDone = function(name, failures, total) {
