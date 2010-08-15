@@ -39,6 +39,8 @@ def add_spot(request):
             'error_message': error_message,
         })
 
+
+
 def search_spots(request):
     json = {'points':[]}
         
@@ -47,12 +49,18 @@ def search_spots(request):
     if request.GET.has_key('place'):
         geo_data = geocode(request.GET['place'])
         
-        address = geo_data['Placemark'][0]['address']
-        lng, lat = geo_data['Placemark'][0]['Point']['coordinates'][:2]
-        json['center_point'] = [
-            address, 
-            [lat, lng]
-        ]
+        if geo_data['Status']['code'] == 200:
+            address = geo_data['Placemark'][0]['address']
+            lng, lat = geo_data['Placemark'][0]['Point']['coordinates'][:2]
+            json['center_point'] = [
+                address, 
+                [lat, lng]
+            ]
+        else:
+            if settings.DEBUG:
+                json['center_point'] = point_by_ip('200.147.67.142')
+            else:
+                json['center_point'] = point_by_ip(request.META['REMOTE_ADDR'])
     else:
         if settings.DEBUG:
             json['center_point'] = point_by_ip('200.147.67.142')

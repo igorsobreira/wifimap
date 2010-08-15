@@ -58,3 +58,7 @@ class SearchViewTest(TestCase):
                     
         assert expected['center_point'] == simplejson.loads(response.content)['center_point']
     
+    def test_search_for_unexpected_location_not_raise(self):
+        response = self.client.get(self.url, {'place':'blablabla'}) 
+        assert True
+    
