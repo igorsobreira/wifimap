@@ -47,9 +47,14 @@ var Map = {
     createAccessPointInfoWindow: function(data) {
         var self = this;
         
-        var content = '<div id="content">' + data.name + '<br/>';
+        var content = '<div id="info-window">' + data.name + '<br/>';
         content += data.address + '<br/>';
         content += '<a href="/spots/' + data.id + '/">see more</a></div>';
+        
+        $('#info-window a').live('click', function() {
+            $('#content').load($(this).attr('href'));
+            return false;
+        });
         
         var infoWindow = new google.maps.InfoWindow({
             content: content
