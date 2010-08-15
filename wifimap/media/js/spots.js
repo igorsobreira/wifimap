@@ -80,20 +80,25 @@ var SpotManager = {
     sendSearchSubmit: function() {
         var self = this;
                 
-        $('#search-form input[name=north]').val(Map.map.getBounds().getNorthEast().lat());
-        $('#search-form input[name=east]').val(Map.map.getBounds().getNorthEast().lng());
-        $('#search-form input[name=south]').val(Map.map.getBounds().getSouthWest().lat());
-        $('#search-form input[name=west]').val(Map.map.getBounds().getSouthWest().lng());
         
         $('#search-form').ajaxSubmit({
             success: function(data) {
-                $('#content').html(data.template);
+                //$('#content').html(data.template);
                 self.bindPointLink();
                 if (!(data.center_point == null)) {
                    Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+                   self.getAccessPointsListByBounds();
                 }
             } 
         });
+    },
+    getAccessPointsListByBounds: function() {
+        var north = Map.map.getBounds().getNorthEast().lat();
+        var east = Map.map.getBounds().getNorthEast().lng();
+        var south = Map.map.getBounds().getSouthWest().lat();
+        var west = Map.map.getBounds().getSouthWest().lng();
+        
+        $('#content').load('/spots/list/?south=' + south + '&north=' + north + '&east=' + east + '&west=' + west);
     }
 };
 
