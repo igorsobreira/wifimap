@@ -67,6 +67,10 @@ var SpotManager = {
             dataType: 'json',
             success: function(data){   
                 Map.map.setCenter(new google.maps.LatLng(data[1][0], data[1][1]));
+                $('#search-form input[type=text]').val(data[0]);
+                if (callback != null) {
+                    callback();
+                }
             }
         });
     },
