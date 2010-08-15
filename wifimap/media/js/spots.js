@@ -1,5 +1,9 @@
 var SpotManager = { 
     init: function () {
+        
+        //default center location
+        $('#search-form input[type=text]').val('Rio de Janeiro, Brazil');
+        
         this.bindSearchSubmit();
         
         // this should go to #/spots/add load callback
@@ -80,7 +84,7 @@ var SpotManager = {
             success: function(data) {
                 $('#content').html(data.template);
                 self.bindPointLink();
-                if (!data.center_point == null) {
+                if (!(data.center_point == null)) {
                    Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
                 }
             } 
