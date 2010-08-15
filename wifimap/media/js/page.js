@@ -8,7 +8,7 @@ var Page = {
     unloadCallbacks: {},
     
     init: function() {
-        this.currentHash = location.hash.replace('#','');
+        this.lastUrl = location.hash.replace('#','');
     },
     
     clear: function() {
@@ -31,9 +31,11 @@ var Page = {
     
     load: function(url) {
         console.log(' [page] loading ' + url );
+        
+        this.unload( this.lastUrl );
         this._callCallbacksFor(url, this.loadCallbacks);
-        this.unload( this.currentHash );
-        this.currentHash = url;
+        if ( url != location.hash.replace('#','') )
+            this.lastUrl = url;
     },
     unload: function(url) {
         console.log(' [page] unloading ' + url );
