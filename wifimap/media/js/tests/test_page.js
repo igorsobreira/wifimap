@@ -55,9 +55,7 @@ test("Loading page", function() {
 
 test("Load to a new page, means unload the current one", function() {
     expect(3);
-    
-    window.location.hash = '#/';
-    
+        
     Page.registerLoadUrl('^/spots', function(){
         ok( 1, "Loading /spots" );
     });
@@ -78,8 +76,7 @@ test("Load to a new page, means unload the current one", function() {
 
 test("Load url really unloads current one", function() {
     expect(1);
-    
-    window.location.hash = "#/spots/search";
+    Page.currentHash = "/spots/search";
     
     Page.registerUnloadUrl("^/spots/search$", function() {
         ok( 1, "unloading /spots/search" );
@@ -97,14 +94,6 @@ test("Load modifies location.hash", function(){
     
     Page.load("/spots/add");
     
-    equals( window.location.hash, "#/spots/add" );
-});
-
-test("Load modifies location.href even when there is no callback", function() {
-    
-    Page.load("/spots/search");
-    
-    equals( window.location.hash, "#/spots/search" );
 });
 
 start();
