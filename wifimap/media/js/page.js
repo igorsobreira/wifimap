@@ -23,34 +23,30 @@ var Page = {
     },
     
     load: function(url) {
-        var load = false;
-        
-        for (u in this.loadCallbacks) {
-            
-            var regex = new RegExp(u);
-            if ( !url.match(regex) )
-                continue;
-            
-            for (var i=0; i<this.loadCallbacks[u].length; i++) {
-                this.loadCallbacks[u][i]();
-                load = true;
-            };
-        };
+        var load = this._callCallbacksFor(url, this.loadCallbacks);
         
         if (load) {
+            window.location.hash = "#" + url;
             this.unload( window.location.hash.substring(1) );
-        }
+        };
     },
     unload: function(url) {
-        for (u in this.unloadCallbacks) {
+        this._callCallbacksFor(url, this.unloadCallbacks);
+    },
+    _callCallbacksFor: function(url, collection) {
+        var called = false;
+        for (u in collection) {
             
             var regex = new RegExp(u);
             if ( !url.match(regex) )
                 continue;
             
-            for (var i=0; i<this.unloadCallbacks[u].length; i++)
-                this.unloadCallbacks[u][i]();
+            for (var i=0; i<collection[u].length; i++) {
+                collection[u][i]();
+                called = true;
+            };
         };
+        return called;
     }
     
 }

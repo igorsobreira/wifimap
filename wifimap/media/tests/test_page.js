@@ -76,6 +76,17 @@ test("Load to a new page, means unload the current one", function() {
     
 });
 
+test("Load modifies location.hash", function(){
+    
+    Page.registerLoadUrl('^/spots/add$', function(){
+        ok( 1, "loaded" );
+    });
+    
+    Page.load("/spots/add");
+    
+    equals( window.location.hash, "#/spots/add" );
+});
+
 start();
 
 QUnit.testStart = function(name) {
