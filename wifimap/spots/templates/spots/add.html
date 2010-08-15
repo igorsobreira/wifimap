@@ -1,7 +1,5 @@
 <h1>Add Spot</h1>
 
-{% include "messages.html" %}
-
 <form action="{% url spots_add %}" method="post" id="add-spot-form">
     {{ form.as_p }}
     <p><input type="submit" value="Save" id="submit-spot"></p>
