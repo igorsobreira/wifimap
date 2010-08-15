@@ -30,9 +30,8 @@ var Page = {
     },
     
     load: function(url) {
-        console.log(' [page] loading ' + url );
-        
         this.unload( this.lastUrl );
+        console.log(' [page] loading ' + url );
         this._callCallbacksFor(url, this.loadCallbacks);
         if ( url != Page.getCurrent() )
             this.lastUrl = url;
@@ -68,25 +67,26 @@ var AddSpotPage = {
     load: function() {
         console.log('loading add');
         
-        SpotForm.bindSubmit();
+        SpotForm.show(function() {
+            SpotForm.bindSubmit();
         
-        Map.followCenter( function(lat, lng) {
-            SpotForm.updateLatLng( new google.maps.LatLng(lat, lng) );
-        });
+            Map.followCenter( function(lat, lng) {
+                SpotForm.updateLatLng( new google.maps.LatLng(lat, lng) );
+            });
     
-        // update form fields with initial values
-        SpotForm.updateLatLng( Map.map.getCenter() );
-        Map.getAddressFromLatLng( 
-            Map.map.getCenter(), 
-            SpotForm.updateAddress 
-        );
+            // update form fields with initial values
+            SpotForm.updateLatLng( Map.map.getCenter() );
+            Map.getAddressFromLatLng( 
+                Map.map.getCenter(), 
+                SpotForm.updateAddress 
+            );
         
-        Map.addCenterMarkerButton();
+            Map.addCenterMarkerButton();
         
-        Map.addMarkerToAdd({
-            position: Map.map.getCenter(),
-        });
-        
+            Map.addMarkerToAdd({
+                position: Map.map.getCenter(),
+            });
+        });        
     },
     unload: function() {
         console.log('unloading add');
@@ -99,5 +99,8 @@ var SpotListPage = {
     load: function() {
         console.log('loading list');
         SpotManager.listSpots();
+    },
+    unload: function() {
+        console.log('unloading list');
     }
 };
