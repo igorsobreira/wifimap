@@ -49,10 +49,14 @@ var SpotForm = {
     },
     doSubmit: function () {
         $('#add-spot-form').ajaxSubmit({
-            success: function(response) { SpotForm.submitted(response) }
+            success: function(response) { SpotForm.submitted(response); }
         });
     },
     submitted: function(response) {
         $('#content').html(response);
-    },    
-}
+    },
+    updateLatLng: function(latLng) {
+        $('#id_lat').val( latLng.lat() );
+        $('#id_lng').val( latLng.lng() );
+    }
+};

@@ -12,16 +12,14 @@
     SpotForm.bindSubmit();
     
     Map.followCenter( function(lat, lng) {
-        $('#id_lat').val(lat);
-        $('#id_lng').val(lng);
+        console.log(lat);
+        SpotForm.updateLatLng( new google.maps.LatLng(lat, lng) );
     });
     
-    $('#id_lat').val( Map.map.getCenter().lat() );
-    $('#id_lng').val( Map.map.getCenter().lat() );
-    
+    SpotForm.updateLatLng( Map.map.getCenter() );
+        
     Map.addMarkerToAdd({
         position: Map.map.getCenter(),
-        draggable: true
     });
     
     // TODO: when leaving this page: hide the "Map.markerToAdd" from Map

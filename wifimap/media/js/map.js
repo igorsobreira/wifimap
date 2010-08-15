@@ -21,8 +21,13 @@ var Map = {
         });
     },
     addMarkerToAdd: function(options) {
-        if (!this.markerToAdd)
+        options['draggable'] = true;
+        if ( !this.markerToAdd ) {
             this.markerToAdd = new google.maps.Marker(options);
+            google.maps.event.addListener(this.markerToAdd, 'dragend', function(obj) {
+                SpotForm.updateLatLng(obj.latLng);
+            });
+        };
         this.markerToAdd.setMap(this.map);
     },
     addAccessPoint: function(point) {
