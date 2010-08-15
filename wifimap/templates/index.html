@@ -4,6 +4,7 @@
     {{ block.super }}
     <script type="text/javascript" src="/media/js/map.js"></script>
     <script type="text/javascript" src="/media/js/spots.js"></script>
+    <script type="text/javascript" src="/media/js/votes.js"></script>
     <link rel="stylesheet" href="/media/style/base.css" type="text/css" />
 {% endblock %}
 
@@ -26,6 +27,7 @@
 <script type="text/javascript" charset="utf-8">
     Map.init();
     SpotManager.init();
+    Voting.init();
 </script>
 
 {% endblock %}

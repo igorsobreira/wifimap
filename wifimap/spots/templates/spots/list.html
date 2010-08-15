@@ -4,10 +4,10 @@
     {% for spot in spots %}
         <div class="spot">
             <p class="votes">
-                <a href="#" class="vote-up" title="Vote Up">+</a>
+                <a href="{% url spot_vote spot.id %}" class="vote-up" title="Vote Up">+</a>
                 <strong>{{ spot.score }}</strong>
                 <span>{{ spot.votes }} votes</span>
-                <a href="#" class="vote-down" title="Vote Down">-</a>
+                <a href="{% url spot_vote spot.id %}" class="vote-down" title="Vote Down">-</a>
             </p>
             <div class="info">
                 <h2>{{ spot.name }}</h2>
