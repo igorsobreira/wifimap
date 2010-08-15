@@ -4,7 +4,6 @@ from django.utils import simplejson
 from django.conf import settings
 
 from spots.models import AccessPoint
-#from spots.views import list_spots
 
 class SearchViewTest(TestCase):
     
@@ -44,12 +43,7 @@ class SearchViewTest(TestCase):
         }
                         
         assert expected['center_point'] == simplejson.loads(self.response.content)['center_point']
-        
-    # def test_search_returns_template_with_access_point_list(self):        
-    #     template = list_spots(self.access_points)
-    #                     
-    #     assert template == simplejson.loads(self.response.content)['template']
-    
+            
     def test_search_returns_mock_ip_based_list_when_debug_true(self):
         response = self.client.get(self.url) 
         expected = {

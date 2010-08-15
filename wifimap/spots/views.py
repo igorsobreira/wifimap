@@ -44,19 +44,7 @@ def add_spot(request):
 def search_spots(request):
     json = {'points':[]}
         
-    points = AccessPoint.objects.all()
-
     if request.GET.has_key('place'):
-        
-        # south = request.GET['south']
-        # north = request.GET['north']
-        # west = request.GET['west']
-        # east = request.GET['east']
-        # 
-        # points = points.filter(lat__lte=north)
-        # points = points.filter(lat__gte=south)
-        # points = points.filter(lng__lte=east)
-        # points = points.filter(lng__gte=west)
     
         geo_data = geocode(request.GET['place'])
         
@@ -74,9 +62,9 @@ def search_spots(request):
             json['center_point'] = point_by_ip('200.147.67.142')
         else:
             json['center_point'] = point_by_ip(request.META['REMOTE_ADDR'])
-        
-    #json['template'] = list_spots(points)
-
+    
+    points = AccessPoint.objects.all()
+    
     for point in points:
         json['points'].append(
             {'id':point.id, 'point':[point.lat, point.lng]}
