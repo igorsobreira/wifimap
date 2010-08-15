@@ -19,7 +19,8 @@ var Map = {
         });
         
         this.markers = [];
-                
+        
+        
     },
     
     followCenter: function(callback) {
