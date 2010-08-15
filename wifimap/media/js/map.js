@@ -49,7 +49,7 @@ var Map = {
         
         var content = '<div id="content">' + data.name + '<br/>';
         content += data.address + '<br/>';
-        content += '<a href="">see more</a></div>';
+        content += '<a href="/spots/' + data.id + '/">see more</a></div>';
         
         var infoWindow = new google.maps.InfoWindow({
             content: content
