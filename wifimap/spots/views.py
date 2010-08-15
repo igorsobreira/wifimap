@@ -89,13 +89,16 @@ def vote(request, id):
     if request.method != 'POST':
         return HttpResponseNotAllowed('Method not allowed')
 
-    vote = request.POST.get('vote', None)
+    vote_type = request.POST.get('vote', None)
+    vote_methods = {
+        'up': AccessPoint.objects.vote_up,
+        'down': AccessPoint.objects.vote_down,
+    }
 
-    if vote is None:
+    if vote_type is None or vote_type not in vote_methods.keys():
         return HttpResponseBadRequest('')
 
-    ok = AccessPoint.objects.vote_up(id)
-
+    ok = vote_methods[vote_type](id)
     if not ok:
         raise Http404
 
@@ -104,5 +107,6 @@ def vote(request, id):
         'score': access_point.score,
         'votes': access_point.votes,
     }
+
     return HttpResponse(simplejson.dumps(json), mimetype="application/json")
 
