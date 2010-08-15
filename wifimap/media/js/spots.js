@@ -12,7 +12,14 @@ var SpotManager = {
          });
     },
     getPointInformation: function(id) {
-        
+        $.ajax({
+            url: '/spots/' + id + '.json',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data){
+                return data;
+            }
+        });           
     },
     listSpots: function() {
         var self = this;
