@@ -150,5 +150,8 @@ def get_point_by_ip(request):
         point = point_by_ip(request.META['REMOTE_ADDR'])
     
     return HttpResponse(simplejson.dumps(point), mimetype="application/json")
+
+def json_list(request):
+    return HttpResponse('')
     
 
