@@ -41,7 +41,15 @@ var SpotManager = {
             success: function(data){
                 $('#content').html(data.template);
                 self.bindPointLink();
-                Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+                
+                navigator.geolocation.getCurrentPosition(function(){
+                    var initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                    Map.map.setCenter(initialLocation);
+                    
+                }, function() {
+                    Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+                });
+                
                 self.addSpotsToMap(data.points);
             }
         });   
