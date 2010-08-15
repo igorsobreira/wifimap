@@ -55,7 +55,8 @@ def search_spots(request):
         points = points.filter(lat__gte=north)
         points = points.filter(lat__lte=south)
         points = points.filter(lng__gte=east)
-                
+        points = points.filter(lng__lte=west)
+    
         geo_data = geocode(request.GET['place'])
         
         if geo_data['Status']['code'] == 200:
