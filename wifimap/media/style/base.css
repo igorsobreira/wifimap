@@ -1,9 +1,9 @@
 /* Structure */
-html, body {
+body {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 16px;
     background: #fff;
-    color: #666;
+    color: #333;
 }
 
 a {
@@ -30,8 +30,8 @@ input[type=text] {
 }
 
 header,
-#content,
-footer {
+footer,
+#content {
     width: 900px;
     padding: 10px;
     margin: 0 auto;
@@ -111,7 +111,7 @@ header {
         border-radius: 5px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
-        background: #6385a5;
+        background: #0074C5;
         color: white;
         padding: 2px 8px;
         border-width: 2px;
@@ -125,13 +125,12 @@ header {
     #content h1 {
         font-size: 20px;
         font-weight: bold;
-        color: #4f7393;
-        border-bottom: 3px dashed #4f7393;
+        color: #0074C5;
         margin-bottom: 20px;
         text-indent: 10px;
     }
     #content form {
-        width: 425px;
+        width: 535px;
     }
     #content form p {
         margin-bottom: 10px;
@@ -141,13 +140,14 @@ header {
         display: inline-block;
         width: 100px;
         text-align: right;
+        margin-right: 10px;
     }
     #content textarea,
     #content input[type=text] {
-        width: 300px;
+        width: 400px;
         border: 0;
         vertical-align: top;
-        background: #99b3cc;
+        background: #ccc;
         border-radius: 5px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
@@ -173,7 +173,7 @@ header {
 
 footer {
     text-align: center;
-    font-weight: bold;
+    padding: 10px 0;
 }
 
 #spot-list {
