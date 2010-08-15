@@ -42,9 +42,9 @@ var Map = {
     createAccessPointInfoWindow: function(data) {
         var self = this;
         
-        var content = data.name + '<br/>';
+        var content = '<div id="content">' + data.name + '<br/>';
         content += data.address + '<br/>';
-        content += '<a href="">see more</a>';
+        content += '<a href="">see more</a></div>';
         
         console.log(data)
         var infoWindow = new google.maps.InfoWindow({
