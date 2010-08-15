@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseNotAllowed,\
         HttpResponseBadRequest, Http404
 from django.utils import simplejson
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 from spots.forms import AccessPointForm
 from spots.models import AccessPoint
@@ -18,6 +19,7 @@ def index(request):
 def add_spot(request):
     success_message = None
     error_message = None
+    ap_id = None
     
     if request.method == 'POST':
         form = AccessPointForm(data=request.POST)
@@ -26,6 +28,7 @@ def add_spot(request):
             ap.lat = request.POST['lat']
             ap.lng = request.POST['lng']
             ap.save()
+            ap_id = ap.id
             success_message = _(u"Your point has been saved")
         else:
             error_message = _(u"Please correct the errors below")
@@ -33,11 +36,21 @@ def add_spot(request):
     if request.method == 'GET' or success_message:
         form = AccessPointForm()
     
-    return direct_to_template(request, 'spots/add.html', {
-            'form': form,
-            'success_message': success_message,
-            'error_message': error_message,
-        })
+    content = render_to_string('spots/add.html', {
+        'form': form,
+        'success_message': success_message,
+        'error_message': error_message,
+    })
+    
+    json = {
+        'content': content,
+        'success': bool(success_message),
+        'message': success_message or error_message,
+    }
+    if ap_id:
+        json['redirect_to'] = reverse('spot_detail', args=(ap_id,))
+    
+    return HttpResponse(simplejson.dumps(json), mimetype='application/json')
 
 
 
