@@ -24,11 +24,26 @@ var Map = {
         options['draggable'] = true;
         if ( !this.markerToAdd ) {
             this.markerToAdd = new google.maps.Marker(options);
-            google.maps.event.addListener(this.markerToAdd, 'dragend', function(obj) {
-                SpotForm.updateLatLng(obj.latLng);
-            });
+            google.maps.event.addListener(this.markerToAdd, 'dragend', this.markerToAddDropped);
         };
         this.markerToAdd.setMap(this.map);
+    },
+    markerToAddDropped: function(obj) {
+        SpotForm.updateLatLng( obj.latLng );
+        Map.getAddressFromLatLng( obj.latLng, SpotForm.updateAddress );
+    },
+    getAddressFromLatLng: function(latLng, callback) {
+        var geocoder = new google.maps.Geocoder()
+        geocoder.geocode( 
+            { 'latLng': latLng }, 
+            function(result, status) {
+                if (status != google.maps.GeocoderStatus.OK)
+                    var address = "Ops... Address couldn't be found :(";
+                else
+                    var address = result[0].formatted_address;
+                callback( address );
+            }
+        );
     },
     addAccessPoint: function(point) {
         var self = this;

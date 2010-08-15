@@ -15,12 +15,19 @@
         SpotForm.updateLatLng( new google.maps.LatLng(lat, lng) );
     });
     
+    // update form fields with initial values
     SpotForm.updateLatLng( Map.map.getCenter() );
-        
+    Map.getAddressFromLatLng( 
+        Map.map.getCenter(), 
+        SpotForm.updateAddress 
+    );
+    
     Map.addMarkerToAdd({
         position: Map.map.getCenter(),
     });
     
-    // TODO: when leaving this page: hide the "Map.markerToAdd" from Map
+    // TODO: when leaving this page: 
+    // - hide the "Map.markerToAdd" from Map
+    // - remove the "Center point" 
     
 </script>
