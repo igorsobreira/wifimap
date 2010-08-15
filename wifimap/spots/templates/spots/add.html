@@ -11,6 +11,9 @@
 <script type="text/javascript" charset="utf-8">
     SpotForm.bindSubmit();
     
+    /* all this code is to start the "add stage", I may want to move it to a method (or object)
+       and add a way to reverse it, when leave the page */
+    
     Map.followCenter( function(lat, lng) {
         SpotForm.updateLatLng( new google.maps.LatLng(lat, lng) );
     });
@@ -21,6 +24,8 @@
         Map.map.getCenter(), 
         SpotForm.updateAddress 
     );
+    
+    Map.addCenterMarkerButton();
     
     Map.addMarkerToAdd({
         position: Map.map.getCenter(),

@@ -18,12 +18,14 @@ var Map = {
             content: 'content'
         });
     },
+    
     followCenter: function(callback) {
         google.maps.event.addListener(this.map, 'center_changed', function() {
             var center = Map.map.getCenter();
             callback(center.lat(), center.lng());
         });
     },
+    
     addMarkerToAdd: function(options) {
         options['draggable'] = true;
         if ( !this.markerToAdd ) {
@@ -36,6 +38,18 @@ var Map = {
         SpotForm.updateLatLng( obj.latLng );
         Map.getAddressFromLatLng( obj.latLng, SpotForm.updateAddress );
     },
+    centralizeMarkerToAdd: function() {
+        Map.addMarkerToAdd({
+            position: Map.map.getCenter()
+        });
+    },
+    
+    addCenterMarkerButton: function() {
+        var button = $('<a id="center-marker-button" href="#">Center Marker</div>');
+        button.click(Map.centralizeMarkerToAdd);
+        this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(button[0]);
+    },
+    
     getAddressFromLatLng: function(latLng, callback) {
         var geocoder = new google.maps.Geocoder()
         geocoder.geocode( 
@@ -49,6 +63,7 @@ var Map = {
             }
         );
     },
+        
     addAccessPoint: function(id, point) {
         var self = this;
         
