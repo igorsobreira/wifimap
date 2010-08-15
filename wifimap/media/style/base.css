@@ -152,18 +152,27 @@ header {
         -webkit-border-radius: 5px;
         float: right;
     }
+    #content textarea {
+        height: 50px;
+    }
     #content input[type=submit] {
         float: right;
     }
-    #content .error_message {
-        border: 2px dashed #c00;
+    #content .error_message,
+    #content .success_message {
         padding: 5px;
-        background: #ffd4aa;
-        color: #c00;
         border-radius: 5px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
         margin-bottom: 10px;
+    }
+    #content .success_message {
+        background: #76e076;
+        color: #096309;
+    }
+    #content .error_message {
+        background: #ffd4aa;
+        color: #c00;
     }
     #content ul.errorlist {
         color: #c00;
