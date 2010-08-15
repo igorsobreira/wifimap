@@ -265,3 +265,9 @@ footer {
             display: inline-block;
         }
 
+#comments {
+    display: block;
+    clear: both;
+    margin-top: 20px;
+}
+
