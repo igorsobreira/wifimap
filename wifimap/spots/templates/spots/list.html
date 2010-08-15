@@ -10,5 +10,9 @@
                 <a href="#{% url spot_detail spot.id %}">see more</a>
             </div>
         </div>
+    {% empty %}
+        <div>
+            <p>No results found for this location.</p>
+        </div>
     {% endfor %}
 </section>
