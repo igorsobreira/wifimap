@@ -59,6 +59,18 @@ var SpotManager = {
         }
         
     },*/
+    
+    getPointByIp: function(callback) {
+        $.ajax({
+            url: '/spots/point_by_ip/',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data){   
+                Map.map.setCenter(new google.maps.LatLng(data[1][0], data[1][1]));
+            }
+        });
+    },
+    
     setCenter: function(point) {
 
         if (point == null) {
@@ -71,16 +83,13 @@ var SpotManager = {
                         point = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                         Map.map.setCenter(point);        
                     }, function() {
-                        point = SpotManager.getPointByIp();
-                        Map.map.setCenter(point);        
+                        SpotManager.getPointByIp();
                     });
                 } else {
-                    point = SpotManager.getPointByIp();
-                    Map.map.setCenter(point);        
+                    SpotManager.getPointByIp();
                 }
             } else {
-                point = SpotManager.getPointByIp();
-                Map.map.setCenter(point);        
+                SpotManager.getPointByIp();
             }        
         }
     },
