@@ -30,10 +30,19 @@ var SpotManager = {
             dataType: 'json',
             success: function(data){
                 $('#content').html(data.template);
+                self.bindPointLink();
                 Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
                 self.addSpotsToMap(data.points);
             }
         });   
+    },
+    bindPointLink: function(){
+        $.each($('#spot-list .spot .info a'), function(index, element){
+            $(element).click(function(){
+                $('#content').load($(this).attr('href'));
+                return false;
+            });
+        });
     }
     
 };
