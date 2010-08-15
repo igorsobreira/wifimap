@@ -31,12 +31,12 @@ class SearchViewTest(TestCase):
     def test_search_returns_all_points(self):        
         expected = {
             'points': [
-                [-22.9963233069, -43.3637237549],
-                [24.0, 24.0],
+                {'id':1, 'point':[-22.9963233069, -43.3637237549]},
+                {'id':2, 'point':[24.0, 24.0]},
             ],
         }
 
-        assert expected['points'] == simplejson.loads(self.response.content)['points']
+        assert expected['points'][0] == simplejson.loads(self.response.content)['points'][0]
 
     def test_search_returns_expected_point(self):        
         expected = {

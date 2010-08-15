@@ -62,9 +62,9 @@ def search_spots(request):
 
     for point in points:
         json['points'].append(
-            (point.lat, point.lng,)
+            {'id':point.id, 'point':[point.lat, point.lng]}
         )
-    
+        
     return HttpResponse(simplejson.dumps(json), mimetype="application/json")
     
 def list_spots(spots):
