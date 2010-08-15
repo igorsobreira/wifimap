@@ -48,7 +48,23 @@ class AddViewTest(TestCase):
         assert 0 == AccessPoint.objects.count()
         assert u"Please correct the errors below"
     
-    def test_vote_up(self):
+    def test_vote_up_works_for_valid_spot(self):
+        self.ap = AccessPoint.objects.create(name='Here', is_protected=True, address='foo', 
+            lat=12, lng=23, votes_up=0, votes_down=0)
+        assert AccessPoint.objects.vote_up(self.ap.id)
+
+    def test_vote_down_works_for_valid_spot(self):
+        self.ap = AccessPoint.objects.create(name='Here', is_protected=True, address='foo', 
+            lat=12, lng=23, votes_up=0, votes_down=0)
+        assert AccessPoint.objects.vote_down(self.ap.id)
+
+    def test_vote_up_fails_for_invalid_spot(self):
+        assert not AccessPoint.objects.vote_up(0)
+
+    def test_vote_down_fails_for_invalid_spot(self):
+        assert not AccessPoint.objects.vote_down(0)
+
+    def test_vote_up_adds_votes_up(self):
         self.ap = AccessPoint.objects.create(name='Here', is_protected=True, address='foo', 
             lat=12, lng=23, votes_up=0, votes_down=0)
         AccessPoint.objects.vote_up(self.ap.id)
@@ -56,7 +72,7 @@ class AddViewTest(TestCase):
         
         assert AccessPoint.objects.get(pk=self.ap.id).votes_up == 2
     
-    def test_vote_down(self):
+    def test_vote_down_decreases_votes_down(self):
         self.ap = AccessPoint.objects.create(name='Here', is_protected=True, address='foo', 
             lat=12, lng=23, votes_up=0, votes_down=0)
         AccessPoint.objects.vote_down(self.ap.id)
