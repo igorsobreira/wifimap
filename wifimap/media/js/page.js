@@ -100,6 +100,7 @@ var AddSpotPage = {
 var SpotListPage = {
     load: function() {
         SpotManager.setCenter(function(){
+            SpotManager.getAccessPointsListByBounds();
         });
     },
     unload: function() {
