@@ -44,14 +44,8 @@ def add_spot(request):
 def search_spots(request):
     json = {'points':[]}
         
-    points = AccessPoint.objects.all()
-    
     if request.GET.has_key('place'):
-        south = request.GET['south']
-        north = request.GET['north']
-        west = request.GET['west']
-        east = request.GET['east']
-                
+    
         geo_data = geocode(request.GET['place'])
         
         if geo_data['Status']['code'] == 200:
@@ -68,9 +62,9 @@ def search_spots(request):
             json['center_point'] = point_by_ip('200.147.67.142')
         else:
             json['center_point'] = point_by_ip(request.META['REMOTE_ADDR'])
-        
-    json['template'] = list_spots(points)
-
+    
+    points = AccessPoint.objects.all()
+    
     for point in points:
         json['points'].append(
             {'id':point.id, 'point':[point.lat, point.lng]}
@@ -78,8 +72,22 @@ def search_spots(request):
         
     return HttpResponse(simplejson.dumps(json), mimetype="application/json")
     
-def list_spots(spots):
-    return render_to_string('spots/list.html', {'spots':spots})
+def list_spots(request):
+    spots = AccessPoint.objects.all()
+    
+    if request.GET.has_key('south'):
+    
+        south = request.GET['south']
+        north = request.GET['north']
+        west = request.GET['west']
+        east = request.GET['east']
+    
+        spots = spots.filter(lat__lte=north)
+        spots = spots.filter(lat__gte=south)
+        spots = spots.filter(lng__lte=east)
+        spots = spots.filter(lng__gte=west)
+
+    return render_to_response('spots/list.html', {'spots':spots})
     
 def spot(request, id):
     access_point = get_object_or_404(AccessPoint, id=id)

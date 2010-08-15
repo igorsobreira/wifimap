@@ -1,5 +1,6 @@
 
 Page.registerLoadUrl("^/$", SpotListPage.load);
+Page.registerUnloadUrl("^/$", SpotListPage.unload);
 
 Page.registerLoadUrl("^/spots/add$", AddSpotPage.load);
 Page.registerUnloadUrl("^/spots/add$", AddSpotPage.unload);

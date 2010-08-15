@@ -97,20 +97,22 @@ test("When loading a new page, update Page.lastUrl", function() {
     
 });
 
-test("When loading the same location.hash, don't forget the previous", function() {
-    expect(3);
+test("Inicial load", function() {
+    expect(2);
     
-    window.location.hash = "#/spots/add";
-    Page.lastUrl = "/spots/search";
-    
-    Page.registerLoadUrl("^/spots/add", function() {
-        ok( 1, "I should be called" );
+    Page.registerLoadUrl('^/$', function() {
+        ok( 1, "Loading /" );
     });
     
-    Page.load("/spots/add");
+    Page.initialLoad();
     
-    equals( Page.lastUrl, "/spots/search" );
-    equals( window.location.hash, "#/spots/add" );
+    Page.registerLoadUrl('^/spots/add', function() {
+        ok( 1, "Loading /spots/add" );
+    });
+    
+    window.location.hash = "#/spots/add";
+    
+    Page.initialLoad();
     
 });
 

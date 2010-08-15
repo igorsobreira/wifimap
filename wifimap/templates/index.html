@@ -42,11 +42,18 @@
         location.hash = '#/spots/add';
         return false;
     });
+    $('#search-button').click(function(){
+        location.hash = "#/";
+        return false;
+    });
     
     $(document).hashchange(function() {
         console.log( " ** hashchanged " + location.hash );
         Page.load( Page.getCurrent() );
     });
+    
+    Page.initialLoad();
+    
 </script>
 
 {% endblock %}
