@@ -76,7 +76,9 @@ var SpotManager = {
             success: function(data) {
                 $('#content').html(data.template);
                 self.bindPointLink();
-                Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+                if (!data.center_point == null) {
+                   Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+                }
             } 
         });
     }
