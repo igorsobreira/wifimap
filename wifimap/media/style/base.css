@@ -127,7 +127,6 @@ header {
         font-weight: bold;
         color: #0074C5;
         margin-bottom: 20px;
-        text-indent: 10px;
     }
     #content form {
         width: 535px;
@@ -193,21 +192,26 @@ footer {
         float: left;
         text-align: center;
         margin-right: 15px;
-        background: #99b3cc;
+        background: #f0f0f0;
+        color: #0074C5;
         border-radius: 5px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
+        overflow: hidden;
     }
         p.votes * {
             display: block;
         }
+        p.votes strong,
+        p.votes span {
+            padding: 2px 10px;
+        }
         p.votes strong {
             font-size: 25px;
-            padding: 0 10px;
         }
         p.votes span {
             font-size: 11px;
-            padding: 0 10px;
+            width: 55px;
         }
         p.votes a {
             background: #6385a5;
@@ -229,6 +233,8 @@ footer {
 
     .spot .info {
         float: left;
+        width: 350px;
+        overflow: hidden;
     }
         .spot .info p {
             margin-bottom: 10px;
@@ -237,9 +243,10 @@ footer {
             border-radius: 5px;
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
-            background: #6385a5;
+            background: #0074C5;
             color: white;
             padding: 2px 8px;
             border-width: 0;
+            display: inline-block;
         }
 
