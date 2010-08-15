@@ -31,14 +31,27 @@ var Map = {
         this.markerToAdd.setMap(this.map);
     },
     addAccessPoint: function(point) {
+        var self = this;
+        
         var marker = new google.maps.Marker({
              position: new google.maps.LatLng(point[0], point[1]),
              id: 1
          });
-         marker.setMap(this.map);
          
          google.maps.event.addListener(marker, 'click', function() {
-            SpotManager.getPointInformation(marker.id);
+            var data = SpotManager.getPointInformation(marker.id);
+            infoWindow = self.createAccessPointInfoWindow(data);
+            infoWindow.open(self.map, marker);
          });
-    }
+         
+         marker.setMap(this.map);
+    },
+    createAccessPointInfoWindow: function(data) {
+        var self = this;
+        
+        var infoWindow = new google.maps.InfoWindow({
+            content: 'muito legal<br/>foo'
+        });
+        return infoWindow;
+    }    
 };
