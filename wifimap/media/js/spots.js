@@ -38,7 +38,7 @@ var SpotManager = {
         });           
     },
     
-    setCenter: function(centerPoint) {
+    setCenter: function(data) {
         var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 
         if (is_chrome) {
@@ -46,15 +46,20 @@ var SpotManager = {
                 navigator.geolocation.getCurrentPosition(function(position){
                     var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     Map.map.setCenter(initialLocation);
+                    SpotManager.afterCentralize(data.points);
                 }, function() {
-                    Map.map.setCenter(new google.maps.LatLng(centerPoint[1][0], centerPoint[1][1]));
+                    Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+                    SpotManager.afterCentralize(data.points);
                 });
             } else {
-                Map.map.setCenter(new google.maps.LatLng(centerPoint[1][0], centerPoint[1][1]));                        
+                Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));                        
+                SpotManager.afterCentralize(data.points);
             }
         } else {
-            Map.map.setCenter(new google.maps.LatLng(centerPoint[1][0], centerPoint[1][1]));
+            Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+            SpotManager.afterCentralize(data.points);
         }
+        
     },
 
     listSpots: function() {
@@ -63,17 +68,14 @@ var SpotManager = {
             method: 'GET',
             dataType: 'json',
             success: function(data){   
-                
-                SpotManager.setCenter(data.center_point);
-                
-                //Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
-                
-                //console.log(navigator.geolocation);
-                
-                SpotManager.getAccessPointsListByBounds();
-                SpotManager.addSpotsToMap(data.points);
+                SpotManager.setCenter(data);                
             }
         });   
+    },
+    
+    afterCentralize: function(points) {
+        SpotManager.getAccessPointsListByBounds();
+        SpotManager.addSpotsToMap(points);
     },
     
     bindSearchSubmit: function() {
