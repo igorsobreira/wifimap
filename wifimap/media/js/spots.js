@@ -84,6 +84,7 @@ var SpotManager = {
         
         $('#search-form input[name=north]').val(Map.map.getBounds().getNorthEast().lat());
         $('#search-form input[name=east]').val(Map.map.getBounds().getNorthEast().lng());
+        $('#search-form input[name=south]').val(Map.map.getBounds().getSouthWest().lat());
         
         //console.log('northeast', Map.map.getBounds().getNorthEast())
         //console.log('northeast', Map.map.getBounds().getNorthEast().lat())
