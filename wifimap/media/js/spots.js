@@ -61,7 +61,6 @@ var SpotManager = {
             return false;
         });        
     }
-    
 };
 
 var SpotForm = {
