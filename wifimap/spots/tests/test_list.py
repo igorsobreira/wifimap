@@ -8,6 +8,8 @@ class ListViewTest(TestCase):
     def setUp(self):
         self.add_some_points()
         self.access_points = AccessPoint.objects.all()
+        self.url = reverse('spots_list', {'north':25, 'south':23, 'east':25, 'west':23})
+        self.response = self.client.get(self.url)
         
     def tearDown(self):
         AccessPoint.objects.all().delete()
@@ -17,17 +19,13 @@ class ListViewTest(TestCase):
         self.point2 = AccessPoint.objects.create(name='point 2', address='Porto Alegre, Brazil', lat=24, lng=24)
         
     def test_list_spots(self):
-        response = list_spots(self.access_points)
-        assert 'point 1' in response
+        assert 'point 2' in self.response
         
     def test_name_in_spots_list(self):
-        response = list_spots(self.access_points)
-        assert 'point 1' in response
+        assert 'point 2' in self.response
         
     def test_address_in_spots_list(self):
-        response = list_spots(self.access_points)
-        assert 'Rio de Janeiro, Brazil' in response
+        assert 'Porto Alegre, Brazil' in self.response
         
     def test_see_more_in_spots_list(self):
-        response = list_spots(self.access_points)
-        assert 'see more' in response
+        assert 'see more' in self.response

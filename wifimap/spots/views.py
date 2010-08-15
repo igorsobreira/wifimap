@@ -45,7 +45,7 @@ def search_spots(request):
     json = {'points':[]}
         
     points = AccessPoint.objects.all()
-    
+
     if request.GET.has_key('place'):
         
         south = request.GET['south']
