@@ -2,6 +2,8 @@ var SpotManager = {
     init: function () {
         this.listSpots();
         this.bindSearchSubmit();
+        
+        // this should go to #/spots/add load callback
         $('#add-spot').unbind('click').click(function(){
             SpotForm.show();
             return false;
