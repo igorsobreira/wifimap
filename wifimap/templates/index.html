@@ -43,11 +43,10 @@
         return false;
     });
     
-    $(window).hashchange(function() {
+    $(document).hashchange(function() {
         console.log( " ** hashchanged " + location.hash );
         Page.load( Page.getCurrent() );
     });
-
 </script>
 
 {% endblock %}
