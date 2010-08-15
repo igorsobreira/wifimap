@@ -47,15 +47,17 @@ def search_spots(request):
     points = AccessPoint.objects.all()
     
     if request.GET.has_key('place'):
+        
+        #import pdb; pdb.set_trace()
         south = request.GET['south']
         north = request.GET['north']
         west = request.GET['west']
         east = request.GET['east']
         
-        points = points.filter(lat__gte=north)
-        points = points.filter(lat__lte=south)
-        points = points.filter(lng__gte=east)
-        points = points.filter(lng__lte=west)
+        points = points.filter(lat__lte=north)
+        points = points.filter(lat__gte=south)
+        points = points.filter(lng__lte=east)
+        points = points.filter(lng__gte=west)
     
         geo_data = geocode(request.GET['place'])
         
