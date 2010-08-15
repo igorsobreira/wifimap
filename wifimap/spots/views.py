@@ -50,9 +50,8 @@ def search_spots(request):
         south = request.GET['south']
         north = request.GET['north']
         west = request.GET['west']
-        
-        
-        
+        east = request.GET['east']
+                
         geo_data = geocode(request.GET['place'])
         
         if geo_data['Status']['code'] == 200:
