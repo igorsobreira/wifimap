@@ -105,7 +105,7 @@ var SpotForm = {
     
     bindSubmit: function() {
         $('#submit-spot').unbind('click').click(function() {
-            SpotForm.doSubmit();
+            SpotForm.submit();
             return false;
         });
     },
@@ -114,20 +114,26 @@ var SpotForm = {
         $.ajax({
             url: '/spots/add/',
             method: 'GET',
-            dataType: 'html',
-            success: function(response){
-                $('#content').html(response);
+            dataType: 'json',
+            success: function(json){
+                $('#content').html(json.content);
                 callback();
             }
         });
     },
-    doSubmit: function () {
+    submit: function () {
         $('#add-spot-form').ajaxSubmit({
-            success: function(response) { SpotForm.submitted(response); }
+            dataType: 'json',
+            success: function(json) { SpotForm.submitted(json); }
         });
     },
-    submitted: function(response) {
-        $('#content').html(response);
+    submitted: function(json) {
+        if ( json.success ) {
+            location.hash = "#" + json.redirect_to;
+        } else {
+            $('#content').html(json.content);
+            SpotForm.bindSubmit();
+        };
     },
     updateLatLng: function(latLng) {
         $('#id_lat').val( latLng.lat() );
