@@ -16,6 +16,10 @@
     <h2>Find WiFi Access Points around the world!</h2>
     <form method="get" action="{% url spots_search %}" id="search-form">
         <span>
+            <input type="hidden" name="north" />
+            <input type="hidden" name="south" />
+            <input type="hidden" name="east" />
+            <input type="hidden" name="west" />
             <input type="text" name="place" />
             <button id="search-button">search</button>
         </span>
@@ -39,11 +43,10 @@
         return false;
     });
     
-    $(window).hashchange(function() {
+    $(document).hashchange(function() {
         console.log( " ** hashchanged " + location.hash );
         Page.load( Page.getCurrent() );
     });
-
 </script>
 
 {% endblock %}
