@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
+from django.utils import simplejson
 
 from spots.models import AccessPoint
 
@@ -19,4 +20,5 @@ class JsonPointTest(TestCase):
     def test_view_returns_json(self):
         assert self.response.items()[0][1] == 'application/json'
         
-
+    def test_name_in_json(self):
+        assert 'point 1' in simplejson.loads(self.response.content)['name']
