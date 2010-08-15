@@ -38,7 +38,6 @@ var SpotManager = {
         });           
     },
     listSpots: function() {
-        var self = this;
         $.ajax({
             url: '/spots/search/',
             method: 'GET',
@@ -55,28 +54,24 @@ var SpotManager = {
                     Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));                        
                 }
                 
-                self.getAccessPointsListByBounds();
+                SpotManager.getAccessPointsListByBounds();
                 
-                self.addSpotsToMap(data.points);
+                SpotManager.addSpotsToMap(data.points);
             }
         });   
     },
     bindSearchSubmit: function() {
-        var self = this;
         $('#search-button').click(function() {
-            self.sendSearchSubmit();
+            SpotManager.sendSearchSubmit();
             return false;
         });        
     },
     sendSearchSubmit: function() {
-        var self = this;
-                
-        
         $('#search-form').ajaxSubmit({
             success: function(data) {
                 if (!(data.center_point == null)) {
                    Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
-                   self.getAccessPointsListByBounds();
+                   SpotManager.getAccessPointsListByBounds();
                 }
             } 
         });
