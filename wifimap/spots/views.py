@@ -47,6 +47,9 @@ def search_spots(request):
     points = AccessPoint.objects.all()
     
     if request.GET.has_key('place'):
+        south = request.GET['south']
+        
+        
         geo_data = geocode(request.GET['place'])
         
         if geo_data['Status']['code'] == 200:
