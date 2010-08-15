@@ -87,7 +87,7 @@ test("Load url really unloads current one", function() {
     
     Page.load("/");
     
-})
+});
 
 test("Load modifies location.hash", function(){
     
