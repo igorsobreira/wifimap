@@ -7,8 +7,8 @@ var SpotManager = {
         });
     },
     addSpotsToMap: function(points) {
-         $.each(points, function(index, point){
-            Map.addAccessPoint(point); 
+         $.each(points, function(index, item){
+            Map.addAccessPoint(item.id, item.point); 
          });
     },
     getPointInformation: function(id, marker, callback) {
