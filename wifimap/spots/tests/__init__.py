@@ -6,3 +6,4 @@ from spots.tests.test_search import *
 from spots.tests.test_list import *
 from spots.tests.test_detail import *
 from spots.tests.test_point_by_ip import *
+from spots.tests.test_json_point import *

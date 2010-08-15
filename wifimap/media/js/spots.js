@@ -36,7 +36,7 @@ var SpotManager = {
          });
     },
     getPointInformation: function(id) {
-
+        
     },
     listSpots: function() {
         var self = this;
