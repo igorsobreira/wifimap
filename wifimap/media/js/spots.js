@@ -82,7 +82,11 @@ var SpotManager = {
         
         $('#search-form input[name=bounds]').val(Map.map.getBounds());
         
+        $('#search-form input[name=north]').val(Map.map.getBounds().getNorthEast().lat());
+        
         //console.log('northeast', Map.map.getBounds().getNorthEast())
+        //console.log('northeast', Map.map.getBounds().getNorthEast().lat())
+        //console.log('northeast', Map.map.getBounds().getNorthEast().lng())
         //console.log('southwest', Map.map.getBounds().getSouthWest())
         
         
