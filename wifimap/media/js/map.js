@@ -30,11 +30,16 @@ var Map = {
         });
     },
     
-    addMarkerToAdd: function(options) {
-        options['draggable'] = true;
+    addMarkerToAdd: function(position) {
+        var options = {
+            draggable: true,
+            position: position
+        };
         if ( !this.markerToAdd ) {
             this.markerToAdd = new google.maps.Marker(options);
             google.maps.event.addListener(this.markerToAdd, 'dragend', this.markerToAddDropped);
+        } else {
+            this.markerToAdd.setPosition(position);
         };
         this.markerToAdd.setMap(this.map);
     },
@@ -47,14 +52,16 @@ var Map = {
         Map.getAddressFromLatLng( obj.latLng, SpotForm.updateAddress );
     },
     centralizeMarkerToAdd: function() {
-        Map.addMarkerToAdd({
-            position: Map.map.getCenter()
-        });
+        Map.addMarkerToAdd( Map.map.getCenter() );
     },
     
     addCenterMarkerButton: function() {
-        var button = $('<a id="center-marker-button" href="#">Center Marker</div>');
-        button.click(Map.centralizeMarkerToAdd);
+        var button = $('<a id="center-marker-button" href="#/spots/add">Center Marker</div>');
+        var self = this;
+        button.click(function() {
+            self.centralizeMarkerToAdd();
+            return false;
+        });
         this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(button[0]);
     },
     removeCenterMarkerButton: function() {
