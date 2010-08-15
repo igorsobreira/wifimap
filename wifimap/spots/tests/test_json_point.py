@@ -22,3 +22,6 @@ class JsonPointTest(TestCase):
         
     def test_name_in_json(self):
         assert 'point 1' in simplejson.loads(self.response.content)['name']
+
+    def test_id_in_json(self):
+        assert self.access_point.id == simplejson.loads(self.response.content)['id']
