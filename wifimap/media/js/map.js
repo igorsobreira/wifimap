@@ -46,9 +46,14 @@ var Map = {
     },
     createAccessPointInfoWindow: function(data) {
         var self = this;
-            
+        
+        var content = data.name + '<br/>';
+        content += data.address + '<br/>';
+        content += '<a href="">see more</a>';
+        
+        console.log(data)
         var infoWindow = new google.maps.InfoWindow({
-            content: 'muito legal<br/>foo'
+            content: content
         });
         return infoWindow;
     }    
