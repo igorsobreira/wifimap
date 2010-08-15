@@ -54,6 +54,7 @@ def search_spots(request):
         
         points = points.filter(lat__gte=north)
         points = points.filter(lat__lte=south)
+        points = points.filter(lng__gte=east)
                 
         geo_data = geocode(request.GET['place'])
         
