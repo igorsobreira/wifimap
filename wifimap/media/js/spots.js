@@ -11,13 +11,14 @@ var SpotManager = {
             Map.addAccessPoint(point); 
          });
     },
-    getPointInformation: function(id) {
+    getPointInformation: function(id, marker, callback) {
         $.ajax({
             url: '/spots/' + id + '.json',
             method: 'GET',
             dataType: 'json',
             success: function(data){
-                return data;
+                var infoWindow = callback(data);
+                infoWindow.open(Map.map, marker);
             }
         });           
     },
@@ -29,10 +30,19 @@ var SpotManager = {
             dataType: 'json',
             success: function(data){
                 $('#content').html(data.template);
+                self.bindPointLink();
                 Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
                 self.addSpotsToMap(data.points);
             }
         });   
+    },
+    bindPointLink: function(){
+        $.each($('#spot-list .spot .info a'), function(index, element){
+            $(element).click(function(){
+                $('#content').load($(this).attr('href'));
+                return false;
+            });
+        });
     }
     
 };
@@ -56,10 +66,14 @@ var SpotForm = {
     },
     doSubmit: function () {
         $('#add-spot-form').ajaxSubmit({
-            success: function(response) { SpotForm.submitted(response) }
+            success: function(response) { SpotForm.submitted(response); }
         });
     },
     submitted: function(response) {
         $('#content').html(response);
-    },    
-}
+    },
+    updateLatLng: function(latLng) {
+        $('#id_lat').val( latLng.lat() );
+        $('#id_lng').val( latLng.lng() );
+    }
+};

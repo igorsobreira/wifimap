@@ -21,8 +21,13 @@ var Map = {
         });
     },
     addMarkerToAdd: function(options) {
-        if (!this.markerToAdd)
+        options['draggable'] = true;
+        if ( !this.markerToAdd ) {
             this.markerToAdd = new google.maps.Marker(options);
+            google.maps.event.addListener(this.markerToAdd, 'dragend', function(obj) {
+                SpotForm.updateLatLng(obj.latLng);
+            });
+        };
         this.markerToAdd.setMap(this.map);
     },
     addAccessPoint: function(point) {
@@ -34,9 +39,7 @@ var Map = {
          });
          
          google.maps.event.addListener(marker, 'click', function() {
-            var data = SpotManager.getPointInformation(marker.id);
-            infoWindow = self.createAccessPointInfoWindow(data);
-            infoWindow.open(self.map, marker);
+            SpotManager.getPointInformation(marker.id, marker, self.createAccessPointInfoWindow);
          });
          
          marker.setMap(this.map);
@@ -44,8 +47,13 @@ var Map = {
     createAccessPointInfoWindow: function(data) {
         var self = this;
         
+        var content = '<div id="content">' + data.name + '<br/>';
+        content += data.address + '<br/>';
+        content += '<a href="">see more</a></div>';
+        
+        console.log(data)
         var infoWindow = new google.maps.InfoWindow({
-            content: 'muito legal<br/>foo'
+            content: content
         });
         return infoWindow;
     }    
