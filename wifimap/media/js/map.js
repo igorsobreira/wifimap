@@ -17,6 +17,8 @@ var Map = {
         this.infoWindow = new google.maps.InfoWindow({
             content: 'content'
         });
+        
+        this.markers = [];
     },
     
     followCenter: function(callback) {
@@ -83,6 +85,7 @@ var Map = {
             SpotManager.getPointInformation(marker.id, marker);
          });
          
+         this.markers.push(marker);
          marker.setMap(this.map);
     }
 };
