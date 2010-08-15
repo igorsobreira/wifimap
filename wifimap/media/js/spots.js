@@ -46,17 +46,20 @@ var SpotManager = {
                 navigator.geolocation.getCurrentPosition(function(position){
                     var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     Map.map.setCenter(initialLocation);
+                    SpotManager.afterCentralize(data.points);
                 }, function() {
                     Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+                    SpotManager.afterCentralize(data.points);
                 });
             } else {
                 Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));                        
+                SpotManager.afterCentralize(data.points);
             }
         } else {
             Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+            SpotManager.afterCentralize(data.points);
         }
         
-        SpotManager.afterCentralize(data.points);
     },
 
     listSpots: function() {
