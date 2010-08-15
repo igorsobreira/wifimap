@@ -80,6 +80,8 @@ var SpotManager = {
     sendSearchSubmit: function() {
         var self = this;
         
+        $('#search-form input[name=bounds]').val(Map.map.getBounds());
+        
         $('#search-form').ajaxSubmit({
             success: function(data) {
                 $('#content').html(data.template);
