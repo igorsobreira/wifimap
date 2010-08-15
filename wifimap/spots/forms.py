@@ -10,6 +10,7 @@ class AccessPointForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AccessPointForm, self).__init__(*args, **kwargs)
         self.fields['address'].widget.attrs['readonly'] = 'readonly'
+        self.fields.keyOrder = ('name', 'address', 'is_protected', 'description', 'lat', 'lng')
     
     class Meta:
         model = AccessPoint
