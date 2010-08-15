@@ -75,5 +75,8 @@ var SpotForm = {
     updateLatLng: function(latLng) {
         $('#id_lat').val( latLng.lat() );
         $('#id_lng').val( latLng.lng() );
+    },
+    updateAddress: function(address) {
+        $('#id_address').val(address);
     }
 };
