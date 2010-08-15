@@ -3,7 +3,8 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.views.generic.simple import direct_to_template
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
-from django.http import HttpResponse, HttpResponseNotAllowed, Http404
+from django.http import HttpResponse, HttpResponseNotAllowed,\
+        HttpResponseBadRequest, Http404
 from django.utils import simplejson
 from django.conf import settings
 
@@ -87,8 +88,21 @@ def spot_json(request, id):
 def vote(request, id):
     if request.method != 'POST':
         return HttpResponseNotAllowed('Method not allowed')
+
+    vote = request.POST.get('vote', None)
+
+    if vote is None:
+        return HttpResponseBadRequest('')
+
     ok = AccessPoint.objects.vote_up(id)
+
     if not ok:
         raise Http404
-    return HttpResponse('')
+
+    access_point = get_object_or_404(AccessPoint, id=id)
+    json = {
+        'score': access_point.score,
+        'votes': access_point.votes,
+    }
+    return HttpResponse(simplejson.dumps(json), mimetype="application/json")
 

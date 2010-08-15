@@ -32,7 +32,19 @@ class VoteViewTest(TestCase):
         response = self.client.post(url, {'vote': 'up'})
         assert 404 == response.status_code
 
+    def test_view_rejects_bad_parameter(self):
+        response = self.client.post(self.url)
+        assert 400 == response.status_code
+
     def test_view_returns_json(self):
         response = self.client.post(self.url, {'vote': 'up'})
-        assert response.content == '{"score": 1, "votes": 1}'
+        assert response.content == '{"votes": 1, "score": 1}'
+
+    def test_vote_up_counts_up(self):
+        response = self.client.post(self.url, {'vote': 'up'})
+        assert response.content == '{"votes": 1, "score": 1}'
+
+    #def test_vote_down_counts_down(self):
+    #    response = self.client.post(self.url, {'vote': 'down'})
+    #    assert response.content == '{"votes": 1, "score": -1}', response.content
 
