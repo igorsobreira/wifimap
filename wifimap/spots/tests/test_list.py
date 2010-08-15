@@ -20,13 +20,13 @@ class ListViewTest(TestCase):
         self.point2 = AccessPoint.objects.create(name='point 2', address='Porto Alegre, Brazil', lat=24, lng=24)
         
     def test_list_spots(self):
-        assert 'point 2' in self.response
+        assert 'point 2' in self.response.content
         
     def test_name_in_spots_list(self):
-        assert 'point 2' in self.response
+        assert 'point 2' in self.response.content
         
     def test_address_in_spots_list(self):
-        assert 'Porto Alegre, Brazil' in self.response
+        assert 'Porto Alegre, Brazil' in self.response.content
         
     def test_see_more_in_spots_list(self):
-        assert 'see more' in self.response
+        assert 'see more' in self.response.content
