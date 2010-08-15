@@ -102,7 +102,7 @@ var SpotListPage = {
         SpotManager.setCenter(function(){
             SpotManager.getAccessPointsListByBounds();
         });
-    },
+    },      
     unload: function() {
         Map.removeAllMarkers();
     }
