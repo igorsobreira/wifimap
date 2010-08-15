@@ -56,10 +56,17 @@ var SpotManager = {
     },
     bindSearchSubmit: function() {
         var self = this;
-        $('#search-form').unbind('click').click(function() {
-            //self.sendSearchSubmit();
+        $('#search-button').click(function() {
+                self.sendSearchSubmit();
             return false;
         });        
+    },
+    sendSearchSubmit: function() {
+        $('#search-form').ajaxSubmit({
+           success: function(response) {
+                //console.log('submited', response);
+           } 
+        });
     }
 };
 
