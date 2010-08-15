@@ -141,4 +141,14 @@ def vote(request, id):
     }
 
     return HttpResponse(simplejson.dumps(json), mimetype="application/json")
+    
+def get_point_by_ip(request):
+    
+    if settings.DEBUG:
+        point = point_by_ip('200.147.67.142')
+    else:
+        point = point_by_ip(request.META['REMOTE_ADDR'])
+    
+    return HttpResponse(simplejson.dumps(point), mimetype="application/json")
+    
 

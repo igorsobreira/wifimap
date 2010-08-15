@@ -69,6 +69,8 @@ var Page = {
 var AddSpotPage = {
     load: function() {
         
+        SpotManager.setCenter();
+        
         SpotForm.show(function() {
             SpotForm.bindSubmit();
         
@@ -97,7 +99,7 @@ var AddSpotPage = {
 
 var SpotListPage = {
     load: function() {
-        SpotManager.listSpots();
+        SpotManager.setCenter();
     },
     unload: function() {
         Map.removeAllMarkers();
