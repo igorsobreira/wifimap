@@ -80,3 +80,9 @@ var AddSpotPage = {
         Map.removeCenterMarkerButton();
     }
 };
+
+var SpotListPage = {
+    load: function() {
+        SpotManager.listSpots();
+    }
+};

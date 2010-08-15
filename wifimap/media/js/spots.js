@@ -1,6 +1,5 @@
 var SpotManager = { 
     init: function () {
-        this.listSpots();
         this.bindSearchSubmit();
         
         // this should go to #/spots/add load callback
@@ -70,7 +69,7 @@ var SpotManager = {
     bindSearchSubmit: function() {
         var self = this;
         $('#search-button').click(function() {
-                self.sendSearchSubmit();
+            self.sendSearchSubmit();
             return false;
         });        
     },
