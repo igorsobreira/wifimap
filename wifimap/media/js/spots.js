@@ -90,12 +90,14 @@ var SpotManager = {
 };
 
 var SpotForm = {
+    
     bindSubmit: function() {
         $('#submit-spot').unbind('click').click(function() {
             SpotForm.doSubmit();
             return false;
         });
     },
+    
     show: function () {
         $.ajax({
             url: '/spots/add/',

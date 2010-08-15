@@ -34,6 +34,10 @@ var Map = {
         };
         this.markerToAdd.setMap(this.map);
     },
+    removeMarkerToAdd: function() {
+        if ( !this.markerToAdd ) return;
+        this.markerToAdd.setMap(null);
+    },
     markerToAddDropped: function(obj) {
         SpotForm.updateLatLng( obj.latLng );
         Map.getAddressFromLatLng( obj.latLng, SpotForm.updateAddress );
@@ -48,6 +52,9 @@ var Map = {
         var button = $('<a id="center-marker-button" href="#">Center Marker</div>');
         button.click(Map.centralizeMarkerToAdd);
         this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(button[0]);
+    },
+    removeCenterMarkerButton: function() {
+        $('#center-marker-button').remove();
     },
     
     getAddressFromLatLng: function(latLng, callback) {

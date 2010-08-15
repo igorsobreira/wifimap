@@ -38,7 +38,7 @@
     
     // every link to a page should have this class, the above #add-spot should be refactored
     $('.page-url').click(function() {
-        var url = $(this).attr('href');
+        var url = $(this).attr('href').replace('#','');
         Page.load(url);
         return false;
     });
