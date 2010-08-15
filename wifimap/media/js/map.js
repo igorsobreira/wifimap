@@ -30,12 +30,12 @@ var Map = {
         };
         this.markerToAdd.setMap(this.map);
     },
-    addAccessPoint: function(point) {
+    addAccessPoint: function(id, point) {
         var self = this;
         
         var marker = new google.maps.Marker({
              position: new google.maps.LatLng(point[0], point[1]),
-             id: 1
+             id: id
          });
          
          google.maps.event.addListener(marker, 'click', function() {
@@ -51,7 +51,6 @@ var Map = {
         content += data.address + '<br/>';
         content += '<a href="">see more</a></div>';
         
-        console.log(data)
         var infoWindow = new google.maps.InfoWindow({
             content: content
         });
