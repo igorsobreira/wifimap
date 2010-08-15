@@ -48,6 +48,7 @@ def search_spots(request):
     
     if request.GET.has_key('place'):
         south = request.GET['south']
+        north = request.GET['north']
         
         
         geo_data = geocode(request.GET['place'])
