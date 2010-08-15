@@ -13,6 +13,10 @@ var Map = {
         
         // this is the Marker instance used in /spots/add to choose the position
         this.markerToAdd = null;
+        
+        this.infoWindow = new google.maps.InfoWindow({
+            content: 'content'
+        });
     },
     
     followCenter: function(callback) {
@@ -69,21 +73,9 @@ var Map = {
          });
          
          google.maps.event.addListener(marker, 'click', function() {
-            SpotManager.getPointInformation(marker.id, marker, self.createAccessPointInfoWindow);
+            SpotManager.getPointInformation(marker.id, marker);
          });
          
          marker.setMap(this.map);
-    },
-    createAccessPointInfoWindow: function(data) {
-        var self = this;
-        
-        var content = '<div id="content">' + data.name + '<br/>';
-        content += data.address + '<br/>';
-        content += '<a href="">see more</a></div>';
-        
-        var infoWindow = new google.maps.InfoWindow({
-            content: content
-        });
-        return infoWindow;
-    }    
+    }
 };

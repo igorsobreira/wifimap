@@ -11,14 +11,23 @@ var SpotManager = {
             Map.addAccessPoint(item.id, item.point); 
          });
     },
-    getPointInformation: function(id, marker, callback) {
+    getPointInformation: function(id, marker) {
         $.ajax({
             url: '/spots/' + id + '.json',
             method: 'GET',
             dataType: 'json',
             success: function(data){
-                var infoWindow = callback(data);
-                infoWindow.open(Map.map, marker);
+                var content = '<div id="info-window">' + data.name + '<br/>';
+                content += data.address + '<br/>';
+                content += '<a href="/spots/' + data.id + '/">see more</a></div>';
+
+                $('#info-window a').live('click', function() {
+                    $('#content').load($(this).attr('href'));
+                    return false;
+                });
+                
+                Map.infoWindow.content = content;
+                Map.infoWindow.open(Map.map, marker);
             }
         });           
     },

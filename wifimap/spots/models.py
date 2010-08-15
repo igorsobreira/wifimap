@@ -5,10 +5,10 @@ from django.utils.translation import ugettext as _
 class AccessPointManager(models.Manager):
     
     def vote_up(self, ap_id):
-        self.filter(pk=ap_id).update(votes_up=F('votes_up') + 1)
+        return self.filter(pk=ap_id).update(votes_up=F('votes_up') + 1) == 1
 
     def vote_down(self, ap_id):
-        self.filter(pk=ap_id).update(votes_down=F('votes_down') + 1)
+        return self.filter(pk=ap_id).update(votes_down=F('votes_down') + 1) == 1
     
 class AccessPoint(models.Model):
     name = models.CharField(_('name'), max_length=255)
