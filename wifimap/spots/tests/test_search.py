@@ -62,3 +62,6 @@ class SearchViewTest(TestCase):
         response = self.client.get(self.url, {'place':'blablabla'}) 
         assert True
     
+    def test_search_for_none_place_not_raise(self):
+        response = self.client.get(self.url, {'place':''}) 
+        assert True        
