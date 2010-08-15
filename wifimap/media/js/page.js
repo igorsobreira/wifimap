@@ -97,7 +97,7 @@ var AddSpotPage = {
 
 var SpotListPage = {
     load: function() {
-        SpotManager.listSpots();
+        SpotManager.setCenter();
     },
     unload: function() {
         Map.removeAllMarkers();
