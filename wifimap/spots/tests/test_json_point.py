@@ -25,3 +25,6 @@ class JsonPointTest(TestCase):
 
     def test_id_in_json(self):
         assert self.access_point.id == simplejson.loads(self.response.content)['id']
+        
+    def test_address_in_json(self):
+        assert 'Rio de Janeiro, Brazil' == simplejson.loads(self.response.content)['address']

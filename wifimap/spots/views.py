@@ -79,6 +79,7 @@ def spot_json(request, id):
     
     json = {
         'name': access_point.name,
-        'id': access_point.id
+        'id': access_point.id,
+        'address': access_point.address
     }
     return HttpResponse(simplejson.dumps(json), mimetype="application/json")    
