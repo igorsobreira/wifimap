@@ -6,10 +6,10 @@
         <h2>{{ spot.name }}</h2>
         <p>{{ spot.address }}</p>
         <p>{{ spot.protected|yesno:"Protected,Unprotected" }} Access</p>
-    </div>
 
-    {% if spot.description %}
-        <p>{{ spot.description }}</p>
-    {% endif %}
+        {% if spot.description %}
+            <p>{{ spot.description }}</p>
+        {% endif %}
+    </div>
 </div>
 
