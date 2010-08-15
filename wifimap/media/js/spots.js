@@ -43,9 +43,7 @@ var SpotManager = {
             url: '/spots/search/',
             method: 'GET',
             dataType: 'json',
-            success: function(data){
-                $('#content').html(data.template);
-                
+            success: function(data){                
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(){
                         var initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -56,6 +54,8 @@ var SpotManager = {
                 } else {
                     Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));                        
                 }
+                
+                self.getAccessPointsListByBounds();
                 
                 self.addSpotsToMap(data.points);
             }
