@@ -101,13 +101,14 @@ var SpotForm = {
         });
     },
     
-    show: function () {
+    show: function (callback) {
         $.ajax({
             url: '/spots/add/',
             method: 'GET',
             dataType: 'html',
             success: function(response){
                 $('#content').html(response);
+                callback();
             }
         });
     },
