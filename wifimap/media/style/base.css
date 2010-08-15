@@ -8,7 +8,9 @@ html, body {
 
 a {
     text-decoration: none;
+    color: #6385a5;
 }
+
 input[type=button],
 input[type=submit] {
     border-radius: 5px;
@@ -150,8 +152,10 @@ footer {
     }
 
 .spot {
-    margin-bottom: 10px;
+    float: left;
+    margin-bottom: 20px;
     overflow: hidden;
+    width: 49%;
 }
     p.votes {
         float: left;
@@ -194,3 +198,16 @@ footer {
     .spot .info {
         float: left;
     }
+        .spot .info p {
+            margin-bottom: 10px;
+        }
+        .spot .info a {
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            background: #6385a5;
+            color: white;
+            padding: 2px 8px;
+            border-width: 0;
+        }
+

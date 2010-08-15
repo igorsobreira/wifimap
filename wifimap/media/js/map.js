@@ -10,6 +10,9 @@ var Map = {
             scrollwheel: false
         };
         this.map = new google.maps.Map(this.container.get(0), this.defaultOptions);
+        
+        // this is the Marker instance used in /spots/add to choose the position
+        this.markerToAdd = null;
     },
     followCenter: function(callback) {
         google.maps.event.addListener(this.map, 'center_changed', function() {
@@ -17,13 +20,10 @@ var Map = {
             callback(center.lat(), center.lng());
         });
     },
-    submitForm: function () {
-        $('#add-spot-form').ajaxSubmit({
-            success: function(response) { SpotManager.formSubmitted(response) }
-        });
-    },
-    formSubmitted: function(response) {
-        $('#content').html(response);
+    addMarkerToAdd: function(options) {
+        if (!this.markerToAdd)
+            this.markerToAdd = new google.maps.Marker(options);
+        this.markerToAdd.setMap(this.map);
     },
     addAccessPoint: function(point) {
         var marker = new google.maps.Marker({
