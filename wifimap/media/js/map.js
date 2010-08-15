@@ -17,6 +17,8 @@ var Map = {
         this.infoWindow = new google.maps.InfoWindow({
             content: 'content'
         });
+        
+        this.markers = [];
     },
     
     followCenter: function(callback) {
@@ -72,8 +74,6 @@ var Map = {
     },
     
     addAccessPoint: function(id, point) {
-        var self = this;
-        
         var marker = new google.maps.Marker({
              position: new google.maps.LatLng(point[0], point[1]),
              id: id
@@ -83,6 +83,15 @@ var Map = {
             SpotManager.getPointInformation(marker.id, marker);
          });
          
+         this.markers.push(marker);
          marker.setMap(this.map);
+    },
+    
+    removeAllMarkers: function() {
+        $.each(this.markers, function(index, marker){
+            marker.setMap(null);
+        });
+        
+        this.markers = [];
     }
 };

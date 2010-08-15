@@ -107,5 +107,15 @@ var SpotListPage = {
     },
     unload: function() {
         console.log('unloading list');
+        Map.removeAllMarkers();
+    }
+};
+
+var SpotDetailPage = {
+    load: function() {
+        $('#content').load(Page.getCurrent());
+    },
+    unload: function() {
+        Map.removeAllMarkers();        
     }
 };
