@@ -101,3 +101,9 @@ var SpotListPage = {
         SpotManager.listSpots();
     }
 };
+
+var SpotDetailPage = {
+    load: function() {
+        $('#content').load(Page.getCurrent());
+    }
+};
