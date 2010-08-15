@@ -85,12 +85,6 @@ var SpotManager = {
         $('#search-form input[name=south]').val(Map.map.getBounds().getSouthWest().lat());
         $('#search-form input[name=west]').val(Map.map.getBounds().getSouthWest().lng());
         
-        //console.log('northeast', Map.map.getBounds().getNorthEast())
-        //console.log('northeast', Map.map.getBounds().getNorthEast().lat())
-        //console.log('northeast', Map.map.getBounds().getNorthEast().lng())
-        //console.log('southwest', Map.map.getBounds().getSouthWest())
-        
-        
         $('#search-form').ajaxSubmit({
             success: function(data) {
                 $('#content').html(data.template);
