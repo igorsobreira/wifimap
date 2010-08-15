@@ -45,7 +45,6 @@ var SpotManager = {
             dataType: 'json',
             success: function(data){
                 $('#content').html(data.template);
-                self.bindPointLink();
                 
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(){
@@ -62,14 +61,6 @@ var SpotManager = {
             }
         });   
     },
-    bindPointLink: function(){
-        $.each($('#spot-list .spot .info a'), function(index, element){
-            $(element).click(function(){
-                $('#content').load($(this).attr('href'));
-                return false;
-            });
-        });
-    },
     bindSearchSubmit: function() {
         var self = this;
         $('#search-button').click(function() {
@@ -83,8 +74,6 @@ var SpotManager = {
         
         $('#search-form').ajaxSubmit({
             success: function(data) {
-                //$('#content').html(data.template);
-                self.bindPointLink();
                 if (!(data.center_point == null)) {
                    Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
                    self.getAccessPointsListByBounds();

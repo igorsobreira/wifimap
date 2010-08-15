@@ -16,6 +16,12 @@ var Page = {
         this.unloadCallbacks = {};
     },
     
+    initialLoad: function() {
+        var url = this.getCurrent();
+        if (!url) url = "/";
+        this.load(url);
+    },
+    
     registerLoadUrl: function(url, callback) {
         this._registerUrl(this.loadCallbacks, url, callback);
     },
@@ -101,5 +107,11 @@ var SpotListPage = {
     },
     unload: function() {
         console.log('unloading list');
+    }
+};
+
+var SpotDetailPage = {
+    load: function() {
+        $('#content').load(Page.getCurrent());
     }
 };
