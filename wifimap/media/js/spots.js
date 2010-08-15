@@ -1,9 +1,6 @@
 var SpotManager = { 
     init: function () {
-        
-        //default center location
-        $('#search-form input[type=text]').val('Rio de Janeiro, Brazil');
-        
+                
         this.bindSearchSubmit();
         
         // this should go to #/spots/add load callback
@@ -37,8 +34,9 @@ var SpotManager = {
             }
         });           
     },
-    
+    /*
     setCenter: function(data) {
+        
         var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 
         if (is_chrome) {
@@ -46,20 +44,45 @@ var SpotManager = {
                 navigator.geolocation.getCurrentPosition(function(position){
                     var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     Map.map.setCenter(initialLocation);
-                    SpotManager.afterCentralize(data.points);
+                    SpotManager.afterCentralize(data);
                 }, function() {
                     Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
-                    SpotManager.afterCentralize(data.points);
+                    SpotManager.afterCentralize(data);
                 });
             } else {
                 Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));                        
-                SpotManager.afterCentralize(data.points);
+                SpotManager.afterCentralize(data);
             }
         } else {
             Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
-            SpotManager.afterCentralize(data.points);
+            SpotManager.afterCentralize(data);
         }
         
+    },*/
+    setCenter: function(point) {
+
+        if (point == null) {
+
+            var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+
+            if (is_chrome) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position){
+                        point = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                        Map.map.setCenter(point);        
+                    }, function() {
+                        point = SpotManager.getPointByIp();
+                        Map.map.setCenter(point);        
+                    });
+                } else {
+                    point = SpotManager.getPointByIp();
+                    Map.map.setCenter(point);        
+                }
+            } else {
+                point = SpotManager.getPointByIp();
+                Map.map.setCenter(point);        
+            }        
+        }
     },
 
     listSpots: function() {
@@ -73,9 +96,12 @@ var SpotManager = {
         });   
     },
     
-    afterCentralize: function(points) {
+    afterCentralize: function(data) {
+        
+        $('#search-form input[type=text]').val(data.center_point[0]);
+        
         SpotManager.getAccessPointsListByBounds();
-        SpotManager.addSpotsToMap(points);
+        SpotManager.addSpotsToMap(data.points);
     },
     
     bindSearchSubmit: function() {
