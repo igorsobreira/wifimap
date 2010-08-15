@@ -48,7 +48,6 @@ def search_spots(request):
     
     if request.GET.has_key('place'):
         
-        #import pdb; pdb.set_trace()
         south = request.GET['south']
         north = request.GET['north']
         west = request.GET['west']
