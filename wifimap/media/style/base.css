@@ -159,6 +159,9 @@ header {
     #content input[type=submit] {
         float: right;
     }
+    #content input[readonly] {
+        color: #666;
+    }
     #content .error_message,
     #content .success_message {
         padding: 5px;
