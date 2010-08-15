@@ -77,7 +77,6 @@ var AddSpotPage = {
         
     },
     unload: function() {
-        console.log("unloading");
         Map.removeMarkerToAdd();
         Map.removeCenterMarkerButton();
     }
