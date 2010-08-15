@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.views.generic.simple import direct_to_template
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.utils import simplejson
 from django.conf import settings
 
@@ -85,5 +85,7 @@ def spot_json(request, id):
     return HttpResponse(simplejson.dumps(json), mimetype="application/json")
 
 def vote(request, id):
+    if request.method != 'POST':
+        return HttpResponseNotAllowed('Method not allowed')
     return HttpResponse('')
 

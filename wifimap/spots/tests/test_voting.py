@@ -23,3 +23,8 @@ class VoteViewTest(TestCase):
         response = self.client.post(self.url, {'vote': 'up'})
         assert 200 == response.status_code
 
+    def test_view_fails_on_get(self):
+        response = self.client.get(self.url)
+        assert 405 == response.status_code
+
+
