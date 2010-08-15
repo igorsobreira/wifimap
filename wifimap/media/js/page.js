@@ -31,7 +31,6 @@ var Page = {
         window.location.hash = "#" + url;
     },
     unload: function(url) {
-        console.log("unload " + url);
         this._callCallbacksFor(url, this.unloadCallbacks);
     },
     _callCallbacksFor: function(url, collection) {
