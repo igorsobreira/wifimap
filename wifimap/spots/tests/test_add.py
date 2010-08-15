@@ -21,6 +21,11 @@ class AddViewTest(TestCase):
         assert u'<input type="hidden" name="lat" id="id_lat" />' in response.content
         assert u'<input type="hidden" name="lng" id="id_lng" />' in response.content
     
+    def test_address_field_is_readonly(self):
+        response = self.client.get(self.url)
+        
+        assert u'<input id="id_address" readonly="readonly" type="text" name="address" maxlength="255" />' in response.content
+    
     def test_submit_valid_form(self):
         post = {
             'name': 'test point',
