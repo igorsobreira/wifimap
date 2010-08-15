@@ -85,7 +85,10 @@ var SpotManager = {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position){
                         point = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                        Map.map.setCenter(point);        
+                        Map.map.setCenter(point);    
+                        Map.getAddressFromLatLng(point, function(address){
+                            $('#search-form input[type=text]').val(address);
+                        });   
                     }, function() {
                         SpotManager.getPointByIp();
                     });
