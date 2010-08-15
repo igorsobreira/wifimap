@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.views.generic.simple import direct_to_template
 from django.template.loader import render_to_string
+from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse, HttpResponseNotAllowed,\
         HttpResponseBadRequest, Http404
@@ -40,7 +41,7 @@ def add_spot(request):
         'form': form,
         'success_message': success_message,
         'error_message': error_message,
-    })
+    }, context_instance=RequestContext(request))
     
     json = {
         'content': content,
