@@ -63,7 +63,7 @@ var Map = {
             }
         );
     },
-        
+    
     addAccessPoint: function(id, point) {
         var self = this;
         
