@@ -1,5 +1,15 @@
-<p>{{ spot.name }}</p>
-<p>{{ spot.address }}</p>
-{% if spot.description %}
-    <p>{{ spot.description }}</p>
-{% endif %}
+<h1>Access Point Detail</h1>
+
+<div class="spot">
+    {% include "spots/votes.html" %}
+    <div class="info">
+        <h2>{{ spot.name }}</h2>
+        <p>{{ spot.address }}</p>
+        <p>{{ spot.protected|yesno:"Protected,Unprotected" }} Access</p>
+    </div>
+
+    {% if spot.description %}
+        <p>{{ spot.description }}</p>
+    {% endif %}
+</div>
+

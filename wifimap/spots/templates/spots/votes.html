@@ -1,0 +1,6 @@
+<p class="votes">
+    <a href="{% url spot_vote spot.id %}" class="vote-up" title="Vote Up">+</a>
+    <strong>{{ spot.score }}</strong>
+    <span>{{ spot.votes }} votes</span>
+    <a href="{% url spot_vote spot.id %}" class="vote-down" title="Vote Down">-</a>
+</p>
