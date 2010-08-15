@@ -87,5 +87,13 @@ var Map = {
          
          this.markers.push(marker);
          marker.setMap(this.map);
+    },
+    
+    removeAllMarkers: function() {
+        $.each(this.markers, function(index, marker){
+            marker.setMap(null);
+        });
+        
+        this.markers = [];
     }
 };
