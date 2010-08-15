@@ -97,6 +97,25 @@ test("When loading a new page, update Page.lastUrl", function() {
     
 });
 
+test("Inicial load", function() {
+    expect(2);
+    
+    Page.registerLoadUrl('^/$', function() {
+        ok( 1, "Loading /" );
+    });
+    
+    Page.initialLoad();
+    
+    Page.registerLoadUrl('^/spots/add', function() {
+        ok( 1, "Loading /spots/add" );
+    });
+    
+    window.location.hash = "#/spots/add";
+    
+    Page.initialLoad();
+    
+});
+
 start();
 
 QUnit.testStart = function(name) {
