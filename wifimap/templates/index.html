@@ -41,7 +41,7 @@
     
     $(window).hashchange(function() {
         console.log( " ** hashchanged " + location.hash );
-        Page.load( location.hash.replace('#','') );
+        Page.load( Page.getCurrent() );
     });
 
 </script>
