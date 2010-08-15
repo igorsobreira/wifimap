@@ -76,6 +76,19 @@ test("Load to a new page, means unload the current one", function() {
     
 });
 
+test("Load url really unloads current one", function() {
+    expect(1);
+    
+    window.location.hash = "#/spots/search";
+    
+    Page.registerUnloadUrl("^/spots/search$", function() {
+        ok( 1, "unloading /spots/search" );
+    });
+    
+    Page.load("/");
+    
+})
+
 test("Load modifies location.hash", function(){
     
     Page.registerLoadUrl('^/spots/add$', function(){

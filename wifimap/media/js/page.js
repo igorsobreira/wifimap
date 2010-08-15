@@ -27,9 +27,8 @@ var Page = {
     
     load: function(url) {
         this._callCallbacksFor(url, this.loadCallbacks);
-        
-        window.location.hash = "#" + url;
         this.unload( window.location.hash.substring(1) );
+        window.location.hash = "#" + url;
     },
     unload: function(url) {
         console.log("unload " + url);
