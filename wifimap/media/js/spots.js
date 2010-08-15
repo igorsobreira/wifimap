@@ -62,10 +62,14 @@ var SpotManager = {
         });        
     },
     sendSearchSubmit: function() {
+        var self = this;
+        
         $('#search-form').ajaxSubmit({
-           success: function(response) {
-                //console.log('submited', response);
-           } 
+            success: function(data) {
+                $('#content').html(data.template);
+                self.bindPointLink();
+                Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
+            } 
         });
     }
 };
