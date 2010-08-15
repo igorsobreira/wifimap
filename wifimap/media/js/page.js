@@ -37,12 +37,10 @@ var Page = {
     
     load: function(url) {
         this.unload( this.lastUrl );
-        console.log(' [page] loading ' + url );
         this._callCallbacksFor(url, this.loadCallbacks);
         this.lastUrl = url;
     },
     unload: function(url) {
-        console.log(' [page] unloading ' + url );
         this._callCallbacksFor(url, this.unloadCallbacks);
     },
     _callCallbacksFor: function(url, collection) {
@@ -70,7 +68,6 @@ var Page = {
 
 var AddSpotPage = {
     load: function() {
-        console.log('loading add');
         
         SpotForm.show(function() {
             SpotForm.bindSubmit();
@@ -94,7 +91,6 @@ var AddSpotPage = {
         });        
     },
     unload: function() {
-        console.log('unloading add');
         Map.removeMarkerToAdd();
         Map.removeCenterMarkerButton();
     }
@@ -102,11 +98,9 @@ var AddSpotPage = {
 
 var SpotListPage = {
     load: function() {
-        console.log('loading list');
         SpotManager.listSpots();
     },
     unload: function() {
-        console.log('unloading list');
         Map.removeAllMarkers();
     }
 };
