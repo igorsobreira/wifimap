@@ -26,30 +26,25 @@ var Page = {
     },
     
     load: function(url) {
-        var load = this._callCallbacksFor(url, this.loadCallbacks);
+        this._callCallbacksFor(url, this.loadCallbacks);
         
-        if (load) {
-            window.location.hash = "#" + url;
-            this.unload( window.location.hash.substring(1) );
-        };
+        window.location.hash = "#" + url;
+        this.unload( window.location.hash.substring(1) );
     },
     unload: function(url) {
+        console.log("unload " + url);
         this._callCallbacksFor(url, this.unloadCallbacks);
     },
     _callCallbacksFor: function(url, collection) {
-        var called = false;
         for (u in collection) {
             
             var regex = new RegExp(u);
             if ( !url.match(regex) )
                 continue;
             
-            for (var i=0; i<collection[u].length; i++) {
+            for (var i=0; i<collection[u].length; i++)
                 collection[u][i]();
-                called = true;
-            };
         };
-        return called;
     }
     
 };
@@ -61,8 +56,6 @@ var Page = {
 
 var AddSpotPage = {
     load: function() {
-        
-        console.log('loading page');
         
         SpotForm.bindSubmit();
         
@@ -85,6 +78,8 @@ var AddSpotPage = {
         
     },
     unload: function() {
-        console.log('unloading page');
+        console.log("unloading");
+        Map.removeMarkerToAdd();
+        Map.removeCenterMarkerButton();
     }
 };
