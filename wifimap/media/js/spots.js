@@ -45,7 +45,6 @@ var SpotManager = {
             dataType: 'json',
             success: function(data){
                 $('#content').html(data.template);
-                self.bindPointLink();
                 
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(){
