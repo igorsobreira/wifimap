@@ -85,13 +85,14 @@ var AddSpotPage = {
                 Map.map.getCenter(), 
                 SpotForm.updateAddress 
             );
+        });
         
-            Map.addCenterMarkerButton();
-        
-            Map.addMarkerToAdd({
-                position: Map.map.getCenter(),
-            });
-        });        
+        Map.addCenterMarkerButton();
+    
+        Map.addMarkerToAdd({
+            position: Map.map.getCenter(),
+        });
+             
     },
     unload: function() {
         console.log('unloading add');

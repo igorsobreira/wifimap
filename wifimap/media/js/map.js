@@ -53,8 +53,11 @@ var Map = {
     },
     
     addCenterMarkerButton: function() {
-        var button = $('<a id="center-marker-button" href="#">Center Marker</div>');
-        button.click(Map.centralizeMarkerToAdd);
+        var button = $('<a id="center-marker-button" href="#/spots/add">Center Marker</div>');
+        button.click(function() {
+            Map.centralizeMarkerToAdd();
+            return false;
+        });
         this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(button[0]);
     },
     removeCenterMarkerButton: function() {
