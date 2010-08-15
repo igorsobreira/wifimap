@@ -82,4 +82,8 @@ def spot_json(request, id):
         'id': access_point.id,
         'address': access_point.address
     }
-    return HttpResponse(simplejson.dumps(json), mimetype="application/json")    
+    return HttpResponse(simplejson.dumps(json), mimetype="application/json")
+
+def vote(request, id):
+    return HttpResponse('')
+

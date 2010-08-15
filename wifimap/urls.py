@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^spots/add/$', 'spots.views.add_spot', name='spots_add'),
     url(r'^spots/(?P<id>\d+)/$', 'spots.views.spot', name='spot_detail'),
     url(r'^spots/(?P<id>\d+).json$', 'spots.views.spot_json', name='spot_json_detail'),
+    url(r'^spots/(?P<id>\d+)/vote/$', 'spots.views.vote', name='spot_vote'),
     url(r'^spots/search/$', 'spots.views.search_spots', name='spots_search'),
 )
 
