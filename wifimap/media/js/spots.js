@@ -133,8 +133,10 @@ var SpotForm = {
     submitted: function(json) {
         if ( json.success ) {
             location.hash = "#" + json.redirect_to;
+            Message.success(json.message);
         } else {
             $('#content').html(json.content);
+            Message.error(json.message);
             SpotForm.bindSubmit();
         };
     },
