@@ -54,6 +54,7 @@ test("Loading page", function() {
 });
 
 test("Load to a new page, means unload the current one", function() {
+    expect(3);
     
     window.location.hash = '#/';
     
@@ -71,6 +72,7 @@ test("Load to a new page, means unload the current one", function() {
         ok( 0, "Hey, I shouldn't be called!" );
     });
     
+    Page.load("/spots");
     
 });
 
