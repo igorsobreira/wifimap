@@ -16,6 +16,8 @@ urlpatterns = patterns('',
     url(r'^spots/(?P<id>\d+).json$', 'spots.views.spot_json', name='spot_json_detail'),
     url(r'^spots/(?P<id>\d+)/vote/$', 'spots.views.vote', name='spot_vote'),
     url(r'^spots/search/$', 'spots.views.search_spots', name='spots_search'),
+    url(r'^spots/list/$', 'spots.views.list_spots', name='spots_list'),
+
 )
 
 if settings.DEBUG:
