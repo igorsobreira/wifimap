@@ -51,7 +51,6 @@ var Map = {
         content += data.address + '<br/>';
         content += '<a href="">see more</a></div>';
         
-        console.log(data)
         var infoWindow = new google.maps.InfoWindow({
             content: content
         });
