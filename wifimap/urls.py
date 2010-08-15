@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^spots/search/$', 'spots.views.search_spots', name='spots_search'),
     url(r'^spots/list/$', 'spots.views.list_spots', name='spots_list'),
 
-    url(r'^spots/point_by_ip/$', 'spots.views.point_by_ip', name='point_by_ip'),
+    url(r'^spots/point_by_ip/$', 'spots.views.get_point_by_ip', name='point_by_ip'),
 
 )
 
