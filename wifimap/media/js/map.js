@@ -39,16 +39,14 @@ var Map = {
          });
          
          google.maps.event.addListener(marker, 'click', function() {
-            var data = SpotManager.getPointInformation(marker.id);
-            infoWindow = self.createAccessPointInfoWindow(data);
-            infoWindow.open(self.map, marker);
+            SpotManager.getPointInformation(marker.id, marker, self.createAccessPointInfoWindow);
          });
          
          marker.setMap(this.map);
     },
     createAccessPointInfoWindow: function(data) {
         var self = this;
-        
+            
         var infoWindow = new google.maps.InfoWindow({
             content: 'muito legal<br/>foo'
         });
