@@ -15,6 +15,7 @@ a {
 button,
 input[type=button],
 input[type=submit] {
+    margin: 0;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -91,13 +92,13 @@ header {
             width: 530px;
         }
         header form button {
+            margin: 0;
             border-radius: 0;
             -moz-border-radius: 0;
             -webkit-border-radius: 0;
         }
         header form input#add-spot {
             font-weight: bold;
-            border: 2px solid #008000;
             background: #008000;
         }
 
