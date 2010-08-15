@@ -177,10 +177,6 @@ footer {
 
 #spot-list {
 }
-    #spot-list h2 {
-        font-weight: bold;
-        font-size: 25px;
-    }
 
 .spot {
     float: left;
@@ -189,6 +185,10 @@ footer {
     width: 440px;
     margin-right: 10px;
 }
+    .spot h2 {
+        font-weight: bold;
+        font-size: 25px;
+    }
     p.votes {
         float: left;
         text-align: center;
