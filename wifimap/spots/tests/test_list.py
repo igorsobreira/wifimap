@@ -9,8 +9,8 @@ class ListViewTest(TestCase):
     def setUp(self):
         self.add_some_points()
         self.access_points = AccessPoint.objects.all()
-        self.url = reverse('spots_list', {'north':25, 'south':23, 'east':25, 'west':23})
-        self.response = self.client.get(self.url)
+        self.url = reverse('spots_list')
+        self.response = self.client.get(self.url, {'north':25, 'south':23, 'east':25, 'west':23})
         
     def tearDown(self):
         AccessPoint.objects.all().delete()
