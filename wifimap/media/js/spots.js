@@ -79,9 +79,7 @@ var SpotManager = {
     },
     sendSearchSubmit: function() {
         var self = this;
-        
-        $('#search-form input[name=bounds]').val(Map.map.getBounds());
-        
+                
         $('#search-form input[name=north]').val(Map.map.getBounds().getNorthEast().lat());
         $('#search-form input[name=east]').val(Map.map.getBounds().getNorthEast().lng());
         $('#search-form input[name=south]').val(Map.map.getBounds().getSouthWest().lat());
