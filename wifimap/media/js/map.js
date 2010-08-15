@@ -74,8 +74,6 @@ var Map = {
     },
     
     addAccessPoint: function(id, point) {
-        var self = this;
-        
         var marker = new google.maps.Marker({
              position: new google.maps.LatLng(point[0], point[1]),
              id: id
