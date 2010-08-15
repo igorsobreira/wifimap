@@ -37,45 +37,45 @@ var SpotManager = {
             }
         });           
     },
+    
+    setCenter: function(centerPoint) {
+        var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+
+        if (is_chrome) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position){
+                    var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    Map.map.setCenter(initialLocation);
+                }, function() {
+                    Map.map.setCenter(new google.maps.LatLng(centerPoint[1][0], centerPoint[1][1]));
+                });
+            } else {
+                Map.map.setCenter(new google.maps.LatLng(centerPoint[1][0], centerPoint[1][1]));                        
+            }
+        } else {
+            Map.map.setCenter(new google.maps.LatLng(centerPoint[1][0], centerPoint[1][1]));
+        }
+    },
+
     listSpots: function() {
         $.ajax({
             url: '/spots/search/',
             method: 'GET',
             dataType: 'json',
             success: function(data){   
-                /* 
-                console.log('foo')            
-                if (navigator.geolocation) {
-                    console.log('navigator')
-                    navigator.geolocation.getCurrentPosition(function(){
-                        var initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-                        Map.map.setCenter(initialLocation);
-                    }, function() {
-                        console.log('unnavigator')
-                        Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
-                    });
-                } else {
-                    console.log('=(')
-                    Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));                        
-                }
-                */
                 
-                ///////////////////
-
-
-                
-                ///////////////
-                
+                SpotManager.setCenter(data.center_point);
                 
                 //Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
                 
                 //console.log(navigator.geolocation);
                 
-                //SpotManager.getAccessPointsListByBounds();
-                //SpotManager.addSpotsToMap(data.points);
+                SpotManager.getAccessPointsListByBounds();
+                SpotManager.addSpotsToMap(data.points);
             }
         });   
     },
+    
     bindSearchSubmit: function() {
         $('#search-button').click(function() {
             SpotManager.sendSearchSubmit();
