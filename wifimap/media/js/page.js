@@ -69,6 +69,8 @@ var Page = {
 var AddSpotPage = {
     load: function() {
         
+        SpotManager.setCenter();
+        
         SpotForm.show(function() {
             SpotForm.bindSubmit();
         
