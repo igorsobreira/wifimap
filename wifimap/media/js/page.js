@@ -86,9 +86,7 @@ var AddSpotPage = {
         
         Map.addCenterMarkerButton();
     
-        Map.addMarkerToAdd({
-            position: Map.map.getCenter(),
-        });
+        Map.addMarkerToAdd( Map.map.getCenter() );
              
     },
     unload: function() {
