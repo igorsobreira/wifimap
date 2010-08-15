@@ -27,4 +27,12 @@ class VoteViewTest(TestCase):
         response = self.client.get(self.url)
         assert 405 == response.status_code
 
+    def test_view_fails_on_invalid_spot(self):
+        url = reverse('spot_vote', kwargs={'id': 0})
+        response = self.client.post(url, {'vote': 'up'})
+        assert 404 == response.status_code
+
+    def test_view_returns_json(self):
+        response = self.client.post(self.url, {'vote': 'up'})
+        assert response.content == '{"score": 1, "votes": 1}'
 
