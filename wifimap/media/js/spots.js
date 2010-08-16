@@ -68,37 +68,34 @@ var SpotManager = {
             success: function(data){   
                 Map.map.setCenter(new google.maps.LatLng(data[1][0], data[1][1]));
                 $('#search-form input[type=text]').val(data[0]);
-                if (callback != null) {
-                    callback();
-                }
+                if (callback != null) { callback(); }
             }
         });
     },
     
-    setCenter: function(point) {
+    setCenter: function(callback) {
 
-        if (point == null) {
+        var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 
-            var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-
-            if (is_chrome) {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position){
-                        point = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                        Map.map.setCenter(point);    
-                        Map.getAddressFromLatLng(point, function(address){
-                            $('#search-form input[type=text]').val(address);
-                        });   
-                    }, function() {
-                        SpotManager.getPointByIp();
-                    });
-                } else {
-                    SpotManager.getPointByIp();
-                }
+        if (is_chrome) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position){
+                    point = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    Map.map.setCenter(point);    
+                    Map.getAddressFromLatLng(point, function(address){
+                        $('#search-form input[type=text]').val(address);
+                        
+                        if (callback != null) {callback();}
+                    });   
+                }, function() {
+                    SpotManager.getPointByIp(callback);
+            });
             } else {
-                SpotManager.getPointByIp();
-            }        
-        }
+                SpotManager.getPointByIp(callback);
+            }
+        } else {
+            SpotManager.getPointByIp(callback);
+        }        
     },
 
     listSpots: function() {
@@ -116,7 +113,6 @@ var SpotManager = {
         
         $('#search-form input[type=text]').val(data.center_point[0]);
         
-        SpotManager.getAccessPointsListByBounds();
         SpotManager.addSpotsToMap(data.points);
     },
     

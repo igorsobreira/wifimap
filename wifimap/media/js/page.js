@@ -99,8 +99,10 @@ var AddSpotPage = {
 
 var SpotListPage = {
     load: function() {
-        SpotManager.setCenter();
-    },
+        SpotManager.setCenter(function(){
+            SpotManager.getAccessPointsListByBounds();
+        });
+    },      
     unload: function() {
         Map.removeAllMarkers();
     }

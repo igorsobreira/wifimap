@@ -150,5 +150,18 @@ def get_point_by_ip(request):
         point = point_by_ip(request.META['REMOTE_ADDR'])
     
     return HttpResponse(simplejson.dumps(point), mimetype="application/json")
+
+def json_list(request):
+    points = AccessPoint.objects.all()
+    
+    points_list =[]
+    
+    for point in points:
+        points_list.append(
+            {'id':point.id, 'point':[point.lat, point.lng]}
+        )
+        
+    return HttpResponse(simplejson.dumps(points_list), mimetype="application/json")
+
     
 
