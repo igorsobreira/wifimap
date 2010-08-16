@@ -24,7 +24,7 @@ var Map = {
         google.maps.event.addListener(Map.map, 'dragend', function() {
            SpotManager.getAccessPointsListByBounds();
          });
-        
+         
     },
     
     followCenter: function(callback) {

@@ -112,6 +112,7 @@ var SpotListPage = {
 var SpotDetailPage = {
     load: function() {
         $('#content').load(Page.getCurrent());
+        SpotManager.addSpotsToMap();
     },
     unload: function() {
         Map.removeAllMarkers();        
