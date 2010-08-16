@@ -29,6 +29,10 @@
 <section id="content"></section>
 
 <script type="text/javascript" charset="utf-8">
+    if ( !Page.getCurrent() ) {
+        location.hash = "#/";
+    }
+
     Map.init();
     SpotManager.init();
     Voting.init();
@@ -47,7 +51,7 @@
     $(document).hashchange(function() {
         Page.load( Page.getCurrent() );
     });
-    
+
     Page.initialLoad();
     
 </script>
