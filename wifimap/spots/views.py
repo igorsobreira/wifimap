@@ -152,6 +152,16 @@ def get_point_by_ip(request):
     return HttpResponse(simplejson.dumps(point), mimetype="application/json")
 
 def json_list(request):
-    return HttpResponse('')
+    points = AccessPoint.objects.all()
+    
+    points_list =[]
+    
+    for point in points:
+        points_list.append(
+            {'id':point.id, 'point':[point.lat, point.lng]}
+        )
+        
+    return HttpResponse(simplejson.dumps(points_list), mimetype="application/json")
+
     
 
