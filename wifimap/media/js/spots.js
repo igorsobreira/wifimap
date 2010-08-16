@@ -1,9 +1,4 @@
 var SpotManager = { 
-    init: function () {
-                
-        this.bindSearchSubmit();
-        
-    },
     
     addSpotsToMap: function() {
         $.ajax({
@@ -101,23 +96,7 @@ var SpotManager = {
             SpotManager.getPointByIp(callback);
         }        
     },
-        
-    bindSearchSubmit: function() {
-        $('#search-button').click(function() {
-            SpotManager.sendSearchSubmit();
-            return false;
-        });        
-    },
-    sendSearchSubmit: function() {
-        $('#search-form').ajaxSubmit({
-            success: function(data) {
-                if (!(data.center_point == null)) {
-                   Map.map.setCenter(new google.maps.LatLng(data.center_point[1][0], data.center_point[1][1]));
-                   SpotManager.getAccessPointsListByBounds();
-                }
-            } 
-        });
-    },
+    
     getAccessPointsListByBounds: function() {
         var north = Map.map.getBounds().getNorthEast().lat();
         var east = Map.map.getBounds().getNorthEast().lng();
@@ -125,6 +104,32 @@ var SpotManager = {
         var west = Map.map.getBounds().getSouthWest().lng();
         
         $('#content').load('/spots/list/?south=' + south + '&north=' + north + '&east=' + east + '&west=' + west);
+    }
+};
+
+var SearchForm = {
+    
+    init: function() {
+        this.bind();
+    },
+    
+    bind: function() {
+        $('#search-button').click(function() {
+            SearchForm.submit();
+            return false;
+        });
+    },
+    
+    submit: function() {
+        $('#search-form').ajaxSubmit({
+            success: function(data) {
+                if (!(data.center_point == null)) {
+                   Map.map.setCenter( new google.maps.LatLng(data.center_point[1][0], 
+                                                             data.center_point[1][1]) );
+                   SpotManager.getAccessPointsListByBounds();
+                };
+            }
+        });
     }
 };
 
