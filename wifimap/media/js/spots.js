@@ -3,11 +3,6 @@ var SpotManager = {
                 
         this.bindSearchSubmit();
         
-        // this should go to #/spots/add load callback
-        $('#add-spot').unbind('click').click(function(){
-            SpotForm.show();
-            return false;
-        });
     },
     
     addSpotsToMap: function() {
