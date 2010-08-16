@@ -9,11 +9,20 @@ var SpotManager = {
             return false;
         });
     },
-    addSpotsToMap: function(points) {
-         $.each(points, function(index, item){
-            Map.addAccessPoint(item.id, item.point); 
-         });
+    
+    addSpotsToMap: function() {
+        $.ajax({
+            url: '/spots/list.json',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data){
+                $.each(data, function(index, item){
+                   Map.addAccessPoint(item.id, item.point); 
+                });
+            }
+        });
     },
+    
     getPointInformation: function(id, marker) {
         $.ajax({
             url: '/spots/' + id + '.json',
