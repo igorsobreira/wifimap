@@ -106,17 +106,6 @@ var SpotManager = {
             SpotManager.getPointByIp(callback);
         }        
     },
-
-    listSpots: function() {
-        $.ajax({
-            url: '/spots/search/',
-            method: 'GET',
-            dataType: 'json',
-            success: function(data){   
-                SpotManager.setCenter(data);                
-            }
-        });   
-    },
     
     afterCentralize: function(data) {
         
