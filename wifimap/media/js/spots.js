@@ -19,14 +19,11 @@ var SpotManager = {
             method: 'GET',
             dataType: 'json',
             success: function(data){
-                var content = '<div id="info-window">' + data.name + '<br/>';
-                content += data.address + '<br/>';
-                content += '<a href="/spots/' + data.id + '/">see more</a></div>';
-
-                $('#info-window a').live('click', function() {
-                    $('#content').load($(this).attr('href'));
-                    return false;
-                });
+                var content = '<div id="info-window">';
+                content += '<span class="name">' + data.name + '</span>';
+                content += '<span class="address">' + data.address + '</span>';
+                content += '<span class="link"><a href="#/spots/' + data.id + '/">see more »</a></span>';
+                content += '</div>';
                 
                 Map.infoWindow.content = content;
                 Map.infoWindow.open(Map.map, marker);
