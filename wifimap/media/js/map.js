@@ -18,13 +18,7 @@ var Map = {
             content: 'content'
         });
         
-        this.markers = [];
-        
-        
-        google.maps.event.addListener(Map.map, 'dragend', function() {
-           SpotManager.getAccessPointsListByBounds();
-         });
-         
+        this.markers = [];         
     },
     
     followCenter: function(callback) {

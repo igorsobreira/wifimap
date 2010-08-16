@@ -90,6 +90,12 @@ var SearchForm = {
             SearchForm.submit();
             return false;
         });
+        
+        $('#search-form').submit(function() {
+            SearchForm.submit();
+            return false;
+        });
+
     },
     
     submit: function() {
