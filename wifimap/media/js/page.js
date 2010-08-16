@@ -103,9 +103,18 @@ var SpotListPage = {
             SpotManager.getAccessPointsListByBounds();
             SpotManager.addSpotsToMap();
         });
+        
+        Map.dragendListener = google.maps.event.addListener(Map.map, 'dragend', function() {
+           SpotManager.getAccessPointsListByBounds();
+        });
+                
     },      
     unload: function() {
         Map.removeAllMarkers();
+        
+        if (Map.dragendListener) 
+            google.maps.event.removeListener(Map.dragendListener);
+        
     }
 };
 
