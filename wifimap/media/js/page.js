@@ -129,8 +129,18 @@ var SpotListPage = {
 
 var SpotDetailPage = {
     load: function() {
-        $('#content').load(Page.getCurrent());
-        SpotManager.addSpotsToMap();
+        
+        var loadContent = function() {
+            $('#content').load(Page.getCurrent());
+            SpotManager.addSpotsToMap();
+        };
+        
+        if ( !(Map.map.getCenter()) ) {
+            SpotManager.setCenter( loadContent );
+        } else {
+            loadContent();
+        };
+    
     },
     unload: function() {
         Map.removeAllMarkers();        
