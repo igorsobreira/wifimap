@@ -39,9 +39,9 @@ class SearchViewTest(TestCase):
 
     def test_search_returns_expected_point(self):        
         expected = {
-            'center_point': ["Rio de Janeiro - RJ, Brazil", [-22.903539299999998, -43.209586899999998]]
+            'center_point': ["Rio de Janeiro, Brazil", [-22.903539299999998, -43.209586899999998]]
         }
-                        
+                                
         assert expected['center_point'] == simplejson.loads(self.response.content)['center_point']
             
     def test_search_returns_mock_ip_based_list_when_debug_true(self):
