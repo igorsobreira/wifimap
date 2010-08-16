@@ -271,3 +271,10 @@ footer {
     margin-top: 20px;
 }
 
+#info-window span {
+    display: block;
+    font-size: 12px;
+}
+#info-window .name {
+    font-weight: bold;
+}
