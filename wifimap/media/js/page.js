@@ -101,6 +101,7 @@ var SpotListPage = {
     load: function() {
         SpotManager.setCenter(function(){
             SpotManager.getAccessPointsListByBounds();
+            SpotManager.addSpotsToMap();
         });
     },      
     unload: function() {
