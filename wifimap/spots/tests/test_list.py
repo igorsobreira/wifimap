@@ -1,7 +1,7 @@
 from django.test import TestCase
+from django.core.urlresolvers import reverse
 
 from spots.models import AccessPoint
-from django.core.urlresolvers import reverse
 from spots.views import list_spots
 
 class ListViewTest(TestCase):
