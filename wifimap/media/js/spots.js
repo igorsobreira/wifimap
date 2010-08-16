@@ -106,14 +106,7 @@ var SpotManager = {
             SpotManager.getPointByIp(callback);
         }        
     },
-    
-    afterCentralize: function(data) {
         
-        $('#search-form input[type=text]').val(data.center_point[0]);
-        
-        SpotManager.addSpotsToMap(data.points);
-    },
-    
     bindSearchSubmit: function() {
         $('#search-button').click(function() {
             SpotManager.sendSearchSubmit();
