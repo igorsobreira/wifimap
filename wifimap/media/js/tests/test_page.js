@@ -97,7 +97,7 @@ test("When loading a new page, update Page.lastUrl", function() {
     
 });
 
-test("Inicial load", function() {
+test("Initial load", function() {
     expect(2);
     
     Page.registerLoadUrl('^/$', function() {
