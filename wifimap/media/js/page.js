@@ -69,27 +69,36 @@ var Page = {
 var AddSpotPage = {
     load: function() {
         
-        SpotManager.setCenter();
-        
-        SpotForm.show(function() {
-            SpotForm.bindSubmit();
-        
-            Map.followCenter( function(lat, lng) {
-                SpotForm.updateLatLng( new google.maps.LatLng(lat, lng) );
+        var showForm = function() {
+            SpotForm.show(function() {
+                SpotForm.bindSubmit();
+                
+                Map.followCenter( function(lat, lng) {
+                    SpotForm.updateLatLng( new google.maps.LatLng(lat, lng) );
+                });
+                
+                // update form fields with initial values
+                SpotForm.updateLatLng( Map.map.getCenter() );
+                Map.getAddressFromLatLng( 
+                    Map.map.getCenter(), 
+                    SpotForm.updateAddress 
+                );
             });
-    
-            // update form fields with initial values
-            SpotForm.updateLatLng( Map.map.getCenter() );
-            Map.getAddressFromLatLng( 
-                Map.map.getCenter(), 
-                SpotForm.updateAddress 
-            );
-        });
+        }
+        
+        var setCenter = function() {
+            Map.addMarkerToAdd( Map.map.getCenter() );
+            showForm();
+        };
         
         Map.addCenterMarkerButton();
+        
+        if ( !(Map.map.getCenter()) ) {
+            SpotManager.setCenter( setCenter );
+        } else {
+            setCenter();
+        };
     
-        Map.addMarkerToAdd( Map.map.getCenter() );
-             
     },
     unload: function() {
         Map.removeMarkerToAdd();

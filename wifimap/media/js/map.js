@@ -67,7 +67,7 @@ var Map = {
     },
     
     getAddressFromLatLng: function(latLng, callback) {
-        var geocoder = new google.maps.Geocoder()
+        var geocoder = new google.maps.Geocoder();
         geocoder.geocode( 
             { 'latLng': latLng }, 
             function(result, status) {
