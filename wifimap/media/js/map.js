@@ -6,7 +6,7 @@ var Map = {
         this.defaultOptions = {
             zoom: 8,
             //center: new google.maps.LatLng(-22.9963233069, -43.3637237549),
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeId: google.maps.MapTypeId.HYBRID,
             scrollwheel: false
         };
         this.map = new google.maps.Map(this.container.get(0), this.defaultOptions);
