@@ -20,11 +20,11 @@ var Map = {
         
         this.markers = [];
         
-        /*
+        
         google.maps.event.addListener(Map.map, 'dragend', function() {
-           SpotManager.listSpots();
+           SpotManager.getAccessPointsListByBounds();
          });
-        */
+         
     },
     
     followCenter: function(callback) {
