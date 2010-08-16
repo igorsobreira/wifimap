@@ -132,6 +132,12 @@ var SpotDetailPage = {
         
         var loadContent = function() {
             $('#content').load(Page.getCurrent());
+            $.ajax({
+                url: Page.getCurrent(),
+                dataType: 'html',
+                success: function(response) { $('#content').html(response) },
+                error: function() { $('#content').html( "<h1>Sorry, this point couldn't be found" ); }
+            });
             SpotManager.addSpotsToMap();
         };
         
