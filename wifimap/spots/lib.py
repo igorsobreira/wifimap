@@ -3,13 +3,21 @@ from django.utils import simplejson
 
 import urllib
 import re
+from xml.dom import minidom
+
+def get_text(nodelist):
+    rc = []
+    for node in nodelist:
+        if node.nodeType == node.TEXT_NODE:
+            rc.append(node.data)
+    return ''.join(rc)
 
 def point_by_ip(ip):
-    response = urllib.urlopen('http://api.hostip.info/get_html.php?ip=%s' % ip).read()
-    response = unicode(response, 'latin-1')
-    
-    country = re.search(u'Country: (.*)', response).group(1)
-    city = re.search(u'City: (.*)', response).group(1)
+    url_source = 'http://ipinfodb.com/ip_query.php?ip=%s'
+    response = minidom.parse(urllib.urlopen(url_source % ip))
+
+    country = get_text(response.getElementsByTagName("CountryName")[0].childNodes)
+    city = get_text(response.getElementsByTagName("City")[0].childNodes)
     
     if u'Unknown' in city:
         geo_data =  geocode(country)
@@ -37,3 +45,4 @@ def geocode(query):
     json = simplejson.load(response)
     
     return json
+
